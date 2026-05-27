@@ -8,6 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --accent-color: #c084fc;
+  --accent-glow: rgba(168, 85, 247, 0.3);
+  --accent-glow-subtle: rgba(168, 85, 247, 0.15);
+}
+[data-theme="cyan"] {
+  --accent-color: #22d3ee;
+  --accent-glow: rgba(8, 145, 178, 0.3);
+  --accent-glow-subtle: rgba(8, 145, 178, 0.15);
+}
+[data-theme="amber"] {
+  --accent-color: #fbbf24;
+  --accent-glow: rgba(217, 119, 6, 0.3);
+  --accent-glow-subtle: rgba(217, 119, 6, 0.15);
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: #000000;
@@ -31,7 +48,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: radial-gradient(circle at 50% 50%, #010603 0%, #000000 100%);
+  background: radial-gradient(circle at 50% 50%, #04020f 0%, #000000 100%);
   overflow: hidden;
 }
 .live-bg-gradient {
@@ -44,13 +61,13 @@ body {
 }
 .bg-blob-1 {
   width: 50vw; height: 50vw;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.07) 0%, rgba(57, 255, 20, 0.02) 45%, transparent 75%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.03) 45%, transparent 75%);
   left: -10%; top: 10%;
   animation: floatBlob1 25s infinite alternate ease-in-out;
 }
 .bg-blob-2 {
   width: 45vw; height: 45vw;
-  background: radial-gradient(circle, rgba(0, 255, 128, 0.06) 0%, rgba(0, 100, 50, 0.01) 50%, transparent 75%);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.07) 0%, rgba(59, 130, 246, 0.02) 50%, transparent 75%);
   right: -5%; bottom: 10%;
   animation: floatBlob2 20s infinite alternate ease-in-out -5s;
 }
@@ -83,20 +100,20 @@ body {
   font-weight: 600;
   font-size: 14px;
   padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(168, 216, 176, 0.25);
+  background: rgba(10, 8, 25, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 100px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 .back-link:hover {
-  background: #a8d8b0;
+  background: var(--accent-color);
   color: #111;
-  border-color: #a8d8b0;
+  border-color: var(--accent-color);
   transform: translateX(-4px);
-  box-shadow: 0 4px 25px rgba(168, 216, 176, 0.3);
+  box-shadow: 0 15px 30px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .back-link svg {
   transition: transform 0.25s ease;
@@ -114,24 +131,25 @@ body {
   align-items: center;
   gap: 8px;
   color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 8, 25, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   padding: 10px 20px;
   border-radius: 100px;
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 .action-btn:hover {
   color: #fff;
-  border-color: rgba(168, 216, 176, 0.4);
-  background: rgba(168, 216, 176, 0.05);
-  box-shadow: 0 4px 20px rgba(168, 216, 176, 0.15);
-  transform: translateY(-1px);
+  border-color: var(--accent-color);
+  background: var(--accent-glow-subtle);
+  box-shadow: 0 15px 30px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
 }
 
 /* ── RESUME VIEWER ── */
@@ -140,18 +158,23 @@ body {
   margin: 0 auto;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(168, 216, 176, 0.03);
-  border: 1px solid rgba(168, 216, 176, 0.15);
-  background: rgba(10, 10, 10, 0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.65), 0 0 40px rgba(168, 85, 247, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(10, 8, 25, 0.45);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
   position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+.resume-viewer-container:active {
+  cursor: grabbing;
 }
 .resume-viewer-container:hover {
   transform: translateY(-4px);
-  border-color: rgba(168, 216, 176, 0.3);
-  box-shadow: 0 35px 70px rgba(0,0,0,0.7), 0 0 50px rgba(168, 216, 176, 0.1);
+  border-color: var(--accent-color);
+  box-shadow: 0 45px 90px rgba(0,0,0,0.75), 0 0 50px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .resume-image-styled {
   width: 100%;
@@ -159,6 +182,59 @@ body {
   display: block;
   border-radius: 23px;
   filter: contrast(1.02) saturate(1.01);
+  transform-origin: center center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Floating Zoom controls */
+.resume-zoom-controls {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(10, 8, 25, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 8px;
+  border-radius: 100px;
+  display: flex;
+  gap: 8px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 100;
+}
+.zoom-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Space Mono', monospace;
+  padding: 0;
+  outline: none;
+}
+.zoom-btn:hover {
+  background: #fff;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+.zoom-btn.reset {
+  font-size: 13px;
+}
+
+@media print {
+  .resume-zoom-controls {
+    display: none !important;
+  }
 }
 
 .interactive-help {
@@ -252,12 +328,159 @@ body {
 
 <!-- Main Resume Interactive Viewer -->
 <div class="resume-viewer-container">
-  <img src="resume.jpg" alt="Benedict Thomas R — Resume" class="resume-image-styled">
+  <img src="resume.jpg" alt="Benedict Thomas R — Resume" class="resume-image-styled" draggable="false">
+</div>
+
+<!-- Floating Zoom Controls -->
+<div class="resume-zoom-controls">
+  <button class="zoom-btn" onclick="adjustZoom(0.15)" title="Zoom In">+</button>
+  <button class="zoom-btn" onclick="adjustZoom(-0.15)" title="Zoom Out">−</button>
+  <button class="zoom-btn reset" onclick="resetZoom()" title="Reset Zoom">⟲</button>
 </div>
 
 <div class="interactive-help">
   [press ctrl+p to print or save as pdf]
 </div>
+
+<script>
+// Load theme on startup
+const savedTheme = localStorage.getItem('portfolio-theme') || 'violet';
+if (savedTheme !== 'violet') {
+  document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+// Zoom and Drag viewer state logic
+const container = document.querySelector('.resume-viewer-container');
+const img = document.querySelector('.resume-image-styled');
+
+let zoom = 1;
+const minZoom = 1;
+const maxZoom = 3;
+let isDragging = false;
+let startX = 0, startY = 0;
+let translateX = 0, translateY = 0;
+
+function updateTransform() {
+  img.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${zoom})`;
+}
+
+function adjustZoom(amount) {
+  const oldZoom = zoom;
+  zoom = Math.min(maxZoom, Math.max(minZoom, zoom + amount));
+  
+  if (zoom === 1) {
+    translateX = 0;
+    translateY = 0;
+  } else {
+    translateX = translateX * (zoom / oldZoom);
+    translateY = translateY * (zoom / oldZoom);
+  }
+  updateTransform();
+}
+
+function resetZoom() {
+  zoom = 1;
+  translateX = 0;
+  translateY = 0;
+  updateTransform();
+}
+
+// Drag operations
+container.addEventListener('mousedown', (e) => {
+  if (zoom === 1) return;
+  isDragging = true;
+  container.style.cursor = 'grabbing';
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
+  e.preventDefault();
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  
+  const rect = container.getBoundingClientRect();
+  const imgRect = img.getBoundingClientRect();
+  
+  const limitX = (imgRect.width - rect.width) / 2;
+  const limitY = (imgRect.height - rect.height) / 2;
+  
+  let newX = e.clientX - startX;
+  let newY = e.clientY - startY;
+  
+  if (limitX > 0) {
+    translateX = Math.max(-limitX, Math.min(limitX, newX));
+  } else {
+    translateX = 0;
+  }
+  
+  if (limitY > 0) {
+    translateY = Math.max(-limitY, Math.min(limitY, newY));
+  } else {
+    translateY = 0;
+  }
+  
+  updateTransform();
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  container.style.cursor = zoom > 1 ? 'grab' : 'default';
+});
+
+// Prevent default browser ghost dragging
+img.addEventListener('dragstart', e => e.preventDefault());
+
+// Mobile Touch drag events
+container.addEventListener('touchstart', (e) => {
+  if (zoom === 1 || e.touches.length > 1) return;
+  isDragging = true;
+  startX = e.touches[0].clientX - translateX;
+  startY = e.touches[0].clientY - translateY;
+}, { passive: true });
+
+container.addEventListener('touchmove', (e) => {
+  if (!isDragging || e.touches.length > 1) return;
+  
+  // Prevent browser viewport scrolling only when zoomed in and actively dragging
+  if (zoom > 1) {
+    if (e.cancelable) e.preventDefault();
+  }
+  
+  let newX = e.touches[0].clientX - startX;
+  let newY = e.touches[0].clientY - startY;
+  
+  const rect = container.getBoundingClientRect();
+  const imgRect = img.getBoundingClientRect();
+  const limitX = (imgRect.width - rect.width) / 2;
+  const limitY = (imgRect.height - rect.height) / 2;
+  
+  if (limitX > 0) translateX = Math.max(-limitX, Math.min(limitX, newX));
+  if (limitY > 0) translateY = Math.max(-limitY, Math.min(limitY, newY));
+  
+  updateTransform();
+}, { passive: false }); // Set passive: false to allow e.preventDefault()!
+
+container.addEventListener('touchend', () => {
+  isDragging = false;
+});
+
+// Interactive Button Feedback for download
+const downloadLink = document.querySelector('a[download]');
+if (downloadLink) {
+  downloadLink.addEventListener('click', (e) => {
+    const originalText = downloadLink.innerHTML;
+    downloadLink.innerHTML = 'Saving Resume ✓';
+    downloadLink.style.borderColor = 'var(--accent-color)';
+    downloadLink.style.color = 'var(--accent-color)';
+    
+    setTimeout(() => {
+      downloadLink.innerHTML = originalText;
+      downloadLink.style.borderColor = '';
+      downloadLink.style.color = '';
+    }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>

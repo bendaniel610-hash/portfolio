@@ -1,0 +1,3510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benedict Thomas R — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  /* Cosmic Violet (Default Theme) */
+  --accent-color: #c084fc;
+  --accent-glow: rgba(168, 85, 247, 0.35);
+  --accent-glow-subtle: rgba(168, 85, 247, 0.08);
+  --accent-dark: #a855f7;
+  --blob-color-1: rgba(139, 92, 246, 0.08);
+  --blob-color-2: rgba(99, 102, 241, 0.07);
+  --blob-color-3: rgba(219, 39, 119, 0.06);
+  --blob-color-4: rgba(6, 182, 212, 0.06);
+  --blob-gradient-glow: radial-gradient(circle, rgba(139, 92, 246, 0.07) 0%, rgba(236, 72, 153, 0.02) 45%, transparent 75%);
+  
+  /* Initial Parallax Scroll Offsets to ensure startup visibility */
+  --scroll-offset-bg: 0px;
+  --scroll-offset-mid: 0px;
+  --scroll-offset-fg: 0px;
+}
+
+
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #000000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN OVERLAY & LIVE BACKGROUND ── */
+.grain-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.085; /* Highly premium tactile noise grain from Pic 2 */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+.live-bg-container {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(circle at 50% 50%, #04020f 0%, #000000 100%);
+  overflow: hidden;
+}
+.live-bg-gradient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.12; /* Tone down overall gradient opacity significantly */
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+.bg-blob-1 {
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, var(--blob-color-1) 0%, transparent 80%);
+  left: -10%; top: 15%;
+  animation: floatBlob1 28s infinite alternate ease-in-out;
+}
+.bg-blob-2 {
+  width: 55vw; height: 55vw;
+  background: radial-gradient(circle, var(--blob-color-2) 0%, transparent 80%);
+  right: -5%; top: 5%;
+  animation: floatBlob2 24s infinite alternate ease-in-out -6s;
+}
+.bg-blob-3 {
+  width: 65vw; height: 65vw;
+  background: radial-gradient(circle, var(--blob-color-3) 0%, transparent 80%);
+  left: 15%; bottom: -10%;
+  animation: floatBlob3 32s infinite alternate ease-in-out -12s;
+}
+.bg-blob-4 {
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, var(--blob-color-4) 0%, transparent 80%);
+  right: 15%; bottom: 15%;
+  animation: floatBlob4 26s infinite alternate ease-in-out -18s;
+}
+.interactive-glow {
+  position: absolute;
+  width: 45vw; height: 45vw;
+  background: var(--blob-gradient-glow);
+  left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  filter: blur(120px);
+  opacity: 0.2; /* Muted spotlight opacity */
+  pointer-events: none;
+  z-index: -1;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+@keyframes floatBlob1 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 50% 50% 50% 50%; }
+  50% { transform: translate(8vw, -10vh) scale(1.15) rotate(90deg); border-radius: 40% 60% 45% 55%; }
+  100% { transform: translate(-4vw, 6vh) scale(0.9) rotate(180deg); border-radius: 50% 50% 60% 40%; }
+}
+@keyframes floatBlob2 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 50% 50% 50% 50%; }
+  50% { transform: translate(-10vw, 8vh) scale(1.08) rotate(-90deg); border-radius: 55% 45% 50% 50%; }
+  100% { transform: translate(5vw, -8vh) scale(0.95) rotate(-180deg); border-radius: 50% 50% 40% 60%; }
+}
+@keyframes floatBlob3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(7vw, -6vh) scale(1.12) rotate(45deg); }
+  100% { transform: translate(-6vw, 8vh) scale(0.88) rotate(90deg); }
+}
+@keyframes floatBlob4 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, -8vh) scale(1.15); }
+  100% { transform: translate(8vw, 8vh) scale(0.85); }
+}
+
+
+/* ── NAV ── */
+.top-nav {
+  position: fixed; top:0; left:0; right:0; z-index: 300;
+  height: 52px;
+  background: rgba(6, 4, 15, 0.75); /* Deep translucent space indigo-black */
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.top-nav .logo {
+  font-family: 'Fraunces', serif;
+  font-size: 17px; font-weight: 400; color: #fff;
+  letter-spacing: -0.3px; text-decoration: none;
+}
+.top-nav .logo span { font-style: italic; opacity: 0.5; margin-left: 4px; }
+.top-nav .nav-right { display: flex; align-items: center; gap: 20px; }
+.top-nav .nav-right a {
+  color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none;
+  transition: color .2s;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+}
+.top-nav .nav-right a:hover,
+.top-nav .nav-right a.active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+.top-nav .contact-btn {
+  background: #fff; color: #111 !important;
+  padding: 7px 18px; border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  transition: opacity .2s !important;
+  border-bottom: none !important;
+  padding-bottom: 7px !important;
+}
+.top-nav .contact-btn:hover { opacity: 0.8; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: transparent; /* Show the live green background throughout */
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 28px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(219, 39, 119, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(6, 182, 212, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 20px;
+  animation: fadeUp .7s ease both;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(52px, 9vw, 110px);
+  font-weight: 300; color: #fff;
+  line-height: 1; letter-spacing: -2px;
+  margin-bottom: 6px;
+  animation: fadeUp .7s .08s ease both;
+}
+.hero h1 em { font-style: italic; color: var(--accent-color); }
+.hero-role {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(18px, 3vw, 32px);
+  font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 32px;
+  animation: fadeUp .7s .15s ease both;
+}
+.hero-summary {
+  max-width: 580px;
+  font-size: 16px; line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  margin: 0 auto 48px;
+  animation: fadeUp .7s .22s ease both;
+}
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center; margin-bottom: 48px;
+  animation: fadeUp .7s .28s ease both;
+}
+.hero-pill {
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.55);
+  padding: 6px 16px; border-radius: 100px;
+  font-size: 13px; text-decoration: none;
+  transition: all .2s;
+}
+.hero-pill:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
+.hero-contact-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: rgba(10, 8, 25, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 100px;
+  padding: 10px 24px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 20px 0 28px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  animation: fadeUp .7s .34s ease both;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-contact-bar:hover {
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+.hero-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+.hero-contact-item .icon {
+  font-size: 14px;
+  color: #a855f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-contact-item a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hero-contact-item a:hover {
+  color: #a855f7;
+}
+.hero-contact-separator {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.15);
+}
+@media (max-width: 768px) {
+  .hero-contact-bar {
+    border-radius: 16px;
+    padding: 14px 20px;
+    gap: 12px;
+  }
+  .hero-contact-separator {
+    display: none;
+  }
+}
+.hero-about-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin: 16px 0 24px 0;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 580px;
+}
+.hero-about-card:hover {
+  border-color: rgba(168, 85, 247, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(168, 85, 247, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+.hero-about-card .about-teaser {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+}
+.read-story-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #c084fc;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+.read-story-btn:hover {
+  color: #a855f7;
+  transform: translateX(4px);
+}
+.hero-scroll {
+  position: absolute; bottom: 36px;
+  color: rgba(255,255,255,0.2); font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTION SHELL ── */
+.section-dark {
+  background: rgba(4, 3, 12, 0.45); /* Gorgeous translucent dark indigo-black */
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  color: #fff;
+  padding: 96px 0;
+  scroll-margin-top: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.section-light {
+  background: rgba(6, 4, 18, 0.4); /* Gorgeous translucent dark indigo-black */
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  color: #fff;
+  padding: 96px 0;
+  scroll-margin-top: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.section-mid {
+  background: rgba(5, 4, 15, 0.42); /* Gorgeous translucent dark indigo-black */
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  color: #fff;
+  padding: 96px 0;
+  scroll-margin-top: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.inner { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+.sec-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.section-dark .sec-label, .section-mid .sec-label, .section-light .sec-label { color: rgba(255,255,255,0.3); }
+.sec-label::after { content:''; flex:1; height:1px; }
+.section-dark .sec-label::after, .section-mid .sec-label::after, .section-light .sec-label::after { background:rgba(255,255,255,0.08); }
+
+.sec-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(34px, 5.5vw, 68px);
+  font-weight: 300; line-height: 1.08; letter-spacing: -1.5px;
+  margin-bottom: 14px;
+}
+.sec-title em { font-style: italic; }
+.section-dark .sec-title em, .section-mid .sec-title em, .section-light .sec-title em { color: var(--accent-color); }
+
+.sec-desc {
+  font-size: 17px; line-height: 1.65; max-width: 560px;
+  margin-bottom: 60px;
+}
+.section-dark .sec-desc, .section-mid .sec-desc, .section-light .sec-desc { color:rgba(255,255,255,0.5); }
+
+/* ── CARDS ── */
+.card-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3px; margin-bottom: 32px;
+}
+.card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+.card {
+  padding: 32px;
+  opacity: 0; transform: translateY(18px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(25px) saturate(130%);
+  -webkit-backdrop-filter: blur(25px) saturate(130%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card.visible { opacity:1; transform:translateY(0); }
+
+.section-dark .card, .section-mid .card, .section-light .card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+.section-dark .card:hover, .section-mid .card:hover, .section-light .card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border-color: var(--accent-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65), 0 0 25px var(--accent-glow-subtle), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.card-img {
+  width: 100%; height: 200px; border-radius: 10px;
+  overflow: hidden; margin-bottom: 22px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex; align-items: center; justify-content: center;
+}
+.card-img img {
+  width:100%; height:100%; object-fit:cover;
+  transition: transform .4s ease;
+}
+.card:hover .card-img img { transform: scale(1.03); }
+.card-img.tall { height: 260px; }
+
+.card-tag {
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.section-dark .card-tag, .section-mid .card-tag, .section-light .card-tag { color:rgba(255,255,255,0.3); }
+
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 400; line-height: 1.2;
+  margin-bottom: 10px;
+}
+.section-dark .card-title, .section-mid .card-title, .section-light .card-title { color:#fff; }
+
+.card-desc { font-size: 14px; line-height: 1.65; }
+.section-dark .card-desc, .section-mid .card-desc, .section-light .card-desc { color:rgba(255,255,255,0.5); }
+
+/* ── HERO FEATURE ── */
+.feature-hero {
+  border-radius: 20px; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; margin-bottom: 32px;
+  backdrop-filter: blur(25px) saturate(130%);
+  -webkit-backdrop-filter: blur(25px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.feature-hero:hover {
+  border-color: rgba(168, 85, 247, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65), 0 0 25px rgba(168, 85, 247, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.fh-content {
+  padding: 52px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.fh-content .card-tag { margin-bottom: 10px; }
+.fh-content h3 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-weight: 300; line-height: 1.12;
+  letter-spacing: -1px; margin-bottom: 14px;
+}
+.fh-content p { font-size: 15px; line-height: 1.7; }
+.fh-visual { min-height: 320px; overflow: hidden; }
+.fh-visual img { width:100%; height:100%; object-fit:cover; }
+
+.feature-hero.dark-violet {
+  background: linear-gradient(135deg, rgba(46, 16, 101, 0.4) 0%, rgba(24, 9, 61, 0.2) 100%);
+}
+.feature-hero.dark-violet .card-tag { color:rgba(255,255,255,0.3); }
+.feature-hero.dark-violet h3 { color: #fff; }
+.feature-hero.dark-violet h3 em { font-style: italic; color: #d8b4fe; }
+.feature-hero.dark-violet p { color:rgba(255,255,255,0.55); }
+
+.feature-hero.dark-blue {
+  background: linear-gradient(135deg, rgba(14, 30, 48, 0.5) 0%, rgba(8, 18, 30, 0.25) 100%);
+}
+.feature-hero.dark-blue .card-tag { color:rgba(255,255,255,0.3); }
+.feature-hero.dark-blue h3 { color: #fff; }
+.feature-hero.dark-blue h3 em { font-style: italic; color: #90c4f0; }
+.feature-hero.dark-blue p { color:rgba(255,255,255,0.55); }
+.feature-hero.dark-blue:hover {
+  border-color: rgba(109, 180, 255, 0.35);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65), 0 0 25px rgba(109, 180, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* ── INTERACTIVE MINIMALIST SKILLS DASHBOARD ── */
+.skills-tab-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.skills-tab-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  padding-left: 20px;
+}
+
+.skills-tab-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  outline: none;
+}
+
+.skills-tab-btn span.tab-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  opacity: 0.4;
+  letter-spacing: 0.5px;
+  width: 18px;
+  transition: all 0.35s ease;
+}
+
+.skills-tab-btn:hover {
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateX(4px);
+}
+
+.skills-tab-btn:hover span.tab-num {
+  color: var(--accent-color);
+  opacity: 0.8;
+}
+
+.skills-tab-btn.active {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.skills-tab-btn.active span.tab-num {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.skills-tab-btn.active::before {
+  content: '';
+  position: absolute;
+  left: -21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 20px;
+  background: var(--accent-color);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 10px var(--accent-glow);
+  animation: tabBarGrow 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabBarGrow {
+  from { height: 0; }
+  to { height: 20px; }
+}
+
+.skills-tab-panels {
+  position: relative;
+  width: 100%;
+}
+
+.skills-tab-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px) translateZ(0);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.skills-tab-panel.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+  animation: panelFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Minimal Skills Grid */
+.minimal-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.minimal-skill-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.minimal-skill-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-color: rgba(192, 132, 252, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.minimal-skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.minimal-skill-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.minimal-skill-card:hover .minimal-skill-title {
+  color: var(--accent-color);
+}
+
+.minimal-skill-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.01);
+  transition: all 0.3s ease;
+}
+
+.minimal-skill-card:hover .minimal-skill-badge {
+  color: var(--accent-color);
+  border-color: rgba(192, 132, 252, 0.25);
+  background: rgba(168, 85, 247, 0.08);
+}
+
+.minimal-skill-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 20px;
+  min-height: 42px;
+}
+
+.minimal-skill-progress-container {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.minimal-skill-progress-fill {
+  height: 100%;
+  background: var(--accent-color);
+  border-radius: 2px;
+  opacity: 0.6;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.minimal-skill-card:hover .minimal-skill-progress-fill {
+  opacity: 1;
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+/* Minimalist Languages */
+.minimal-lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.minimal-lang-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.minimal-lang-row:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-color: rgba(192, 132, 252, 0.2);
+  transform: translateX(4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(168, 85, 247, 0.02);
+}
+
+.minimal-lang-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.minimal-lang-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.minimal-lang-row:hover .minimal-lang-code {
+  color: var(--accent-color);
+  border-color: rgba(192, 132, 252, 0.25);
+  background: rgba(168, 85, 247, 0.08);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
+}
+
+.minimal-lang-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.minimal-lang-row:hover .minimal-lang-name {
+  color: var(--accent-color);
+}
+
+.minimal-lang-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.minimal-lang-level {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.minimal-lang-dot-track {
+  display: flex;
+  gap: 5px;
+}
+
+.minimal-lang-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.minimal-lang-dot.filled {
+  background: var(--accent-color);
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+.minimal-lang-row:hover .minimal-lang-dot.filled {
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+/* Minimalist Education */
+.minimal-edu-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.minimal-edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.minimal-edu-card:hover {
+  border-color: rgba(192, 132, 252, 0.2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45), 0 0 20px rgba(168, 85, 247, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.minimal-edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.minimal-edu-degree {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.minimal-edu-school {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+}
+
+.minimal-edu-stamp {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-color);
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  padding: 3px 12px;
+  border-radius: 100px;
+  background: rgba(168, 85, 247, 0.08);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.05);
+}
+
+.minimal-edu-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 24px;
+}
+
+.minimal-edu-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.minimal-edu-stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.minimal-edu-stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .skills-tab-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  
+  .skills-tab-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-left: 0;
+    padding-bottom: 8px;
+    gap: 8px;
+    scrollbar-width: none;
+  }
+  
+  .skills-tab-nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .skills-tab-btn {
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    white-space: nowrap;
+    font-size: 13px;
+    gap: 8px;
+  }
+  
+  .skills-tab-btn.active {
+    border-color: var(--accent-color);
+    background: rgba(168, 85, 247, 0.05);
+  }
+  
+  .skills-tab-btn.active::before {
+    display: none;
+  }
+  
+  .skills-tab-btn span.tab-num {
+    display: none;
+  }
+}
+
+/* ── CERTS ── */
+.cert-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.cert-card {
+  border-radius: 20px; overflow: hidden;
+  display: flex; align-items: center; gap: 24px;
+  padding: 28px 32px;
+  backdrop-filter: blur(25px) saturate(130%);
+  -webkit-backdrop-filter: blur(25px) saturate(130%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cert-card:hover {
+  transform: translateY(-4px);
+}
+.cert-card.ge {
+  background: linear-gradient(135deg, rgba(14, 32, 64, 0.45) 0%, rgba(8, 18, 36, 0.2) 100%);
+  border: 1px solid rgba(109, 180, 255, 0.25);
+}
+.cert-card.siemens {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.45) 0%, rgba(30, 41, 59, 0.2) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+.cert-card.ge:hover {
+  border-color: rgba(109, 180, 255, 0.5);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65), 0 0 25px rgba(109, 180, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.cert-card.siemens:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65), 0 0 25px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.cert-logo {
+  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600;
+  color: #fff; white-space: nowrap; flex-shrink: 0;
+}
+.cert-logo.ge-logo { color: #6db4ff; }
+.cert-logo.siemens-logo { color: #38bdf8; }
+.cert-info h4 {
+  font-size: 15px; font-weight: 600; color:#fff; margin-bottom: 4px;
+}
+.cert-info p { font-size: 13px; color:rgba(255,255,255,0.5); line-height: 1.5; }
+
+/* ── DIVIDER ── */
+.hr { max-width:1080px; margin:0 auto; height:1px; }
+.section-dark .hr, .section-mid .hr, .section-light .hr { background:rgba(255,255,255,0.07); }
+
+/* ── FOOTER ── */
+footer {
+  background: rgba(3, 2, 10, 0.9); /* Translucent dark space indigo-black */
+  color:rgba(255,255,255,0.35);
+  padding: 40px 28px; text-align:center; font-size:13px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+footer a { color:rgba(255,255,255,0.45); text-decoration:none; margin:0 12px; }
+footer a:hover { color:#fff; }
+.footer-name {
+  font-family:'Fraunces', serif; font-size:24px; font-weight:300;
+  color:#fff; margin-bottom:8px; letter-spacing:-0.5px;
+}
+.footer-name em { font-style:italic; color:#c084fc; }
+.back-btn {
+  display:inline-block; margin-top:24px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.5); padding:9px 22px;
+  border-radius:100px; font-size:13px; text-decoration:none;
+  transition:background .2s;
+}
+.back-btn:hover { background:rgba(255,255,255,0.12); color:#fff; }
+
+/* ── PHOTO STRIP ── */
+.photo-strip {
+  display: flex; gap: 12px;
+  overflow-x: auto; padding-bottom: 4px;
+  scrollbar-width: none; margin-bottom: 32px;
+}
+.photo-strip::-webkit-scrollbar { display:none; }
+.photo-strip img {
+  height: 180px; width: auto; border-radius: 10px;
+  flex-shrink: 0; object-fit: cover;
+  transition: transform .3s; cursor: pointer;
+}
+.photo-strip img:hover { transform: scale(1.02); }
+
+/* ── STAT ROW ── */
+.stat-row { display:flex; gap:48px; flex-wrap:wrap; margin-bottom:48px; }
+.stat { }
+.stat .num {
+  font-family:'Fraunces', serif; font-size:48px; font-weight:300;
+  line-height:1; letter-spacing:-2px;
+}
+.section-dark .stat .num, .section-mid .stat .num, .section-light .stat .num { color:#c084fc; }
+.stat .label { font-size:13px; margin-top:4px; }
+.section-dark .stat .label, .section-mid .stat .label, .section-light .stat .label { color:rgba(255,255,255,0.4); }
+
+/* ── LIGHTBOX ── */
+.lb-overlay {
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:rgba(0,0,0,0.92);
+  align-items:center; justify-content:center;
+}
+.lb-overlay.open { display:flex; }
+.lb-overlay img {
+  max-width:90vw; max-height:88vh;
+  border-radius:8px; object-fit:contain;
+}
+.lb-close {
+  position:fixed; top:20px; right:24px;
+  color:#fff; font-size:28px; cursor:pointer;
+  opacity:0.6; transition:opacity .2s;
+}
+.lb-close:hover { opacity:1; }
+
+@media (max-width:768px) {
+  .feature-hero { grid-template-columns:1fr; }
+  .card-grid-2, .card-grid-3 { grid-template-columns:1fr; }
+  .cert-row { grid-template-columns:1fr; }
+  .fh-content { padding:32px 24px; }
+  .stat-row { gap:28px; }
+}
+
+/* ── GLASS ENTRY SCREEN ── */
+.glass-screen {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 9999;
+  background: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1), opacity 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+  will-change: transform, opacity;
+}
+.glass-screen.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.glass-media-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.glass-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease;
+}
+.glass-overlay-blur {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.75) 100%),
+              linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Landscape viewport box representation for portrait and small mobile viewports */
+@media (max-aspect-ratio: 1/1) or (max-width: 768px) and (orientation: portrait) {
+  .glass-media-container {
+    width: 90vw;
+    height: auto;
+    aspect-ratio: 16/9;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    inset: auto;
+    position: relative;
+    overflow: hidden;
+    animation: pulseLandscapePanel 6s infinite alternate ease-in-out;
+  }
+  .glass-video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .glass-content {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+@keyframes pulseLandscapePanel {
+  0% { transform: scale(1.0); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 255, 255, 0.03); }
+  100% { transform: scale(1.02); box-shadow: 0 35px 80px rgba(0, 0, 0, 0.9), 0 0 60px rgba(168, 85, 247, 0.05); }
+}
+
+.glass-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  max-width: 820px;
+  padding: 0 28px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+  z-index: 10;
+  pointer-events: none;
+}
+.welcome-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(22px, 3.8vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85), 0 0 40px rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+.continue-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(11px, 1.8vw, 14px);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.continue-tag::before {
+  content: '[';
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.continue-tag::after {
+  content: ']';
+  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── RESTRUCTURED HERO ── */
+.hero {
+  perspective: 1000px;
+}
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  text-align: left;
+  gap: 60px;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transform: translateY(calc(var(--scroll-offset-mid, 0px) * -0.15));
+  will-change: transform;
+}
+.hero-content h1 {
+  text-align: left;
+}
+.hero-pills {
+  justify-content: flex-start;
+}
+.hero-meta {
+  justify-content: flex-start;
+}
+.hero-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  align-self: flex-start;
+  margin-top: 24px;
+  transform: translateY(calc(var(--scroll-offset-fg, 0px) * -0.15));
+  will-change: transform;
+}
+.hero-image-container {
+  position: relative;
+  top: -60px; /* Shifted up elegantly to balance with title block */
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 3.2/4;
+  border-radius: 20px;
+  overflow: visible;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+.hero-image-bg-glow {
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.08) 0%, transparent 65%);
+  z-index: 1;
+  pointer-events: none;
+  animation: pulseGlow 10s infinite alternate ease-in-out;
+}
+.hero-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 2;
+  position: relative;
+  filter: drop-shadow(0 20px 35px rgba(0,0,0,0.5));
+  border-radius: 20px;
+}
+@keyframes pulseGlow {
+  0% { transform: scale(0.92); opacity: 0.7; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+/* ── PARALLAX HELPERS ── */
+.hero::before {
+  transform: translateY(calc(var(--scroll-offset-bg, 0px) * -0.1));
+  will-change: transform;
+}
+
+@media (max-width: 900px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+    padding-top: 40px;
+  }
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  .hero-content h1 {
+    text-align: center;
+  }
+  .hero-pills {
+    justify-content: center;
+  }
+  .hero-meta {
+    justify-content: center;
+  }
+  .hero-visual-wrapper {
+    align-self: center;
+    margin-top: 0;
+  }
+  .hero-image-container {
+    top: 0;
+    max-width: 300px;
+  }
+}
+
+/* ── CONTACT ACTIONS ── */
+.contact-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 32px 0 24px;
+}
+.contact-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.email-btn {
+  background: #fff;
+  color: #111;
+  border: 1px solid #fff;
+}
+.email-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+}
+.linkedin-btn {
+  background: transparent;
+  color: #0077b5;
+  border: 1px solid #0077b5;
+}
+.linkedin-btn:hover {
+  background: #0077b5;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 119, 181, 0.15);
+}
+.resume-btn {
+  background: transparent;
+  color: #c084fc;
+  border: 1px solid #c084fc;
+}
+.resume-btn:hover {
+  background: #c084fc;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.15);
+}
+.hero-pill.resume-pill {
+  border-color: #c084fc;
+  color: #c084fc;
+  font-weight: 500;
+}
+.hero-pill.resume-pill:hover {
+  background: #c084fc;
+  color: #111;
+  border-color: #c084fc;
+}
+
+/* ── GLASS INTERACTIVE MODAL ── */
+.glass-modal-blur-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+.glass-modal-blur-bg.open {
+  display: block;
+  opacity: 1;
+}
+.glass-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 24px;
+  pointer-events: none;
+}
+.glass-modal-overlay.open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+.glass-modal-container {
+  width: 100%;
+  max-width: 900px;
+  max-height: 85vh;
+  background: linear-gradient(135deg, rgba(16, 10, 32, 0.96) 0%, rgba(8, 5, 20, 0.92) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.glass-modal-overlay.open .glass-modal-container {
+  transform: scale(1);
+}
+body.modal-open .live-bg-gradient {
+  animation-play-state: paused !important;
+}
+.glass-modal-header {
+  padding: 24px 32px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.glass-modal-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+.glass-modal-title em {
+  font-style: italic;
+  color: #c084fc;
+}
+.glass-modal-close {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 16px;
+}
+.glass-modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+.glass-modal-body {
+  padding: 32px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+  /* Butter smooth scrolling */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.glass-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.glass-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.glass-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.glass-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.glass-modal-body h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  margin: 28px 0 12px;
+}
+.glass-modal-body h4:first-child {
+  margin-top: 0;
+}
+.glass-modal-body p {
+  margin-bottom: 20px;
+}
+.glass-modal-body ul {
+  margin-bottom: 24px;
+  padding-left: 20px;
+}
+.glass-modal-body li {
+  margin-bottom: 8px;
+}
+.glass-modal-body strong {
+  color: #fff;
+}
+.glass-modal-body .takeaway-box {
+  background: rgba(168, 85, 247, 0.08);
+  border-left: 3px solid #c084fc;
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
+  margin: 24px 0 12px;
+}
+.glass-modal-body .takeaway-box h5 {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+/* Certificate Viewport inside Modal */
+.glass-modal-pdf-container {
+  width: 100%;
+  height: 58vh;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+.glass-modal-pdf-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.pdf-fallback-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pdf-fallback-btn:hover {
+  background: #fff;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Read Full Story Action buttons */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #c084fc;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+.read-more-btn:hover {
+  color: #a855f7;
+  transform: translateX(6px);
+}
+.feature-hero.dark-blue .read-more-btn {
+  color: #90c4f0;
+}
+.feature-hero.dark-blue .read-more-btn:hover {
+  color: #6db4ff;
+}
+
+/* Cert card interactive state */
+.cert-card {
+  cursor: pointer;
+}
+
+/* ── WHY ME SECTION ── */
+.whyme-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: start;
+}
+.whyme-intro {
+  position: sticky;
+  top: 100px;
+}
+.whyme-quote {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 300;
+  line-height: 1.4;
+  color: #fff;
+  margin-bottom: 24px;
+  position: relative;
+  padding-left: 28px;
+}
+.whyme-quote::before {
+  content: "“";
+  font-family: 'Fraunces', serif;
+  font-size: 90px;
+  color: rgba(168, 85, 247, 0.12);
+  position: absolute;
+  left: -12px;
+  top: -28px;
+  line-height: 1;
+}
+.whyme-quote em {
+  font-style: italic;
+  color: #c084fc;
+}
+.whyme-quote-author {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 28px;
+}
+.whyme-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.whyme-card {
+  padding: 36px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(25px) saturate(130%);
+  -webkit-backdrop-filter: blur(25px) saturate(130%);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.whyme-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border-color: rgba(168, 85, 247, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65), 0 0 25px rgba(168, 85, 247, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.whyme-card-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: #a855f7;
+  margin-bottom: 12px;
+  display: block;
+  letter-spacing: 1px;
+}
+.whyme-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.whyme-card-desc {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 900px) {
+  .whyme-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .whyme-intro {
+    position: static;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   ADDITIONAL PREMIUM STYLES FOR MOBILE NAV, THEMES, & WIDGETS
+   ──────────────────────────────────────────────────────── */
+
+/* Responsive mobile menu styles */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 350;
+  padding: 0;
+}
+.mobile-menu-toggle span {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  z-index: 299;
+  background: rgba(4, 2, 10, 0.96);
+  backdrop-filter: blur(25px) saturate(140%);
+  -webkit-backdrop-filter: blur(25px) saturate(140%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+.mobile-nav-drawer.open {
+  right: 0;
+}
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  padding: 0 40px;
+}
+.mobile-nav-links a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  transition: color 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.mobile-nav-drawer.open .mobile-nav-links a {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(1) { transition-delay: 0.05s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(2) { transition-delay: 0.1s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(3) { transition-delay: 0.15s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(4) { transition-delay: 0.2s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(5) { transition-delay: 0.25s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(6) { transition-delay: 0.3s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(7) { transition-delay: 0.35s; }
+.mobile-nav-drawer.open .mobile-nav-links a:nth-child(8) { transition-delay: 0.4s; }
+
+.mobile-nav-links a:hover,
+.mobile-nav-links a.active {
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+.mobile-nav-links .mobile-contact-btn {
+  background: #fff;
+  color: #111 !important;
+  padding: 10px 32px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 12px;
+}
+.mobile-nav-links .mobile-contact-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .top-nav .nav-right {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+
+
+/* Scroll reveal animations removed to prevent backdrop-filter rendering conflicts */
+
+/* Modal Reading Progress Bar & Figure styling */
+.modal-progress-bar-container {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10005;
+}
+.modal-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-dark));
+  transition: width 0.1s ease;
+}
+.modal-figure {
+  margin: 24px 0 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.2);
+}
+.modal-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+.modal-caption {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  text-align: center;
+  margin: 8px 0 20px 0 !important;
+  letter-spacing: 0.5px;
+}
+
+/* Upgraded Lightbox Styles */
+.lb-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80vw;
+  max-height: 85vh;
+}
+.lb-caption {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.5px;
+}
+.lb-nav-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10005;
+  margin: 0 20px;
+  padding: 0;
+  outline: none;
+}
+.lb-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .lb-nav-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+  }
+  .lb-nav-btn.prev { left: 16px; }
+  .lb-nav-btn.next { right: 16px; }
+  .lb-content {
+    max-width: 90vw;
+  }
+}
+
+/* Interactive CAD Explorer Widget */
+.cad-explorer-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  margin-bottom: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: border-color 0.3s ease;
+}
+.cad-explorer-card:hover {
+  border-color: var(--accent-glow);
+}
+.cad-explorer-header {
+  margin-bottom: 20px;
+}
+.cad-explorer-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.cad-explorer-title .icon {
+  font-size: 20px;
+}
+.cad-explorer-title h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+}
+.cad-explorer-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.cad-explorer-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.cad-explorer-display {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  height: 240px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cad-explorer-display img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+.cad-explorer-overlay-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-color);
+  background: rgba(10, 8, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+}
+.cad-explorer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cad-steps {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+.cad-step-dot {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Space Mono', monospace;
+  padding: 0;
+  outline: none;
+}
+.cad-step-dot:hover,
+.cad-step-dot.active {
+  background: var(--accent-color);
+  color: #111;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+.cad-progress-bar-bg {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cad-progress-bar-fill {
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-dark));
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cad-step-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  min-height: 80px;
+}
+.cad-step-text strong {
+  color: #fff;
+  display: block;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .cad-explorer-body {
+    grid-template-columns: 1fr;
+  }
+  .cad-explorer-display {
+    height: 200px;
+  }
+}
+
+/* ── UNIVERSAL MOBILE & DESKTOP READABILITY UPGRADE ── */
+@media (max-width: 768px) {
+  /* Hero Section alignment & margin fixes */
+  .hero-contact-bar {
+    border-radius: 16px;
+    padding: 14px 20px;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px auto 28px auto !important;
+  }
+  .hero-contact-separator {
+    display: none;
+  }
+  
+  /* Modal optimization for mobile viewports */
+  .glass-modal-overlay {
+    padding: 12px !important;
+  }
+  .glass-modal-container {
+    max-height: 90vh !important;
+    border-radius: 16px !important;
+  }
+  .glass-modal-header {
+    padding: 18px 20px 14px !important;
+  }
+  .glass-modal-body {
+    padding: 20px !important;
+    font-size: 14.5px !important;
+    line-height: 1.75 !important;
+  }
+  .modal-figure {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .modal-figure img {
+    max-height: 260px !important;
+  }
+  
+  /* Buggy/unreadable PDF Iframe hide & primary action fallback button on mobile */
+  .glass-modal-pdf-container {
+    display: none !important;
+  }
+  .pdf-fallback-btn {
+    display: flex !important;
+    justify-content: center !important;
+    background: var(--accent-color) !important;
+    color: #111 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 10px 20px var(--accent-glow) !important;
+    border-color: var(--accent-color) !important;
+    margin: 16px auto 8px auto !important;
+  }
+  
+  /* Why Me Section Card Padding */
+  .whyme-card {
+    padding: 24px !important;
+  }
+  .whyme-quote {
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Spaced, perfectly wrapped footer layout */
+  footer div[style*="margin-top:16px"] {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 12px 20px !important;
+    margin-top: 16px !important;
+  }
+  footer a {
+    margin: 0 !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain Overlay & Live Moving Background Gradients -->
+<div class="grain-overlay"></div>
+<div class="live-bg-container">
+  <div class="live-bg-gradient bg-blob-1"></div>
+  <div class="live-bg-gradient bg-blob-2"></div>
+  <div class="live-bg-gradient bg-blob-3"></div>
+  <div class="live-bg-gradient bg-blob-4"></div>
+  <div class="live-bg-gradient interactive-glow"></div>
+</div>
+
+<!-- GLASS ENTRY SCREEN -->
+<div class="glass-screen" id="glassScreen">
+  <!-- Pinterest Premium Liquid Refraction Landscape Viewport -->
+  <div class="glass-media-container">
+    <video autoplay loop muted playsinline class="glass-video-bg" poster="https://i.pinimg.com/originals/fb/7c/9c/fb7c9c2a0a48ab3f97cbe4ab0b256402.jpg" disablePictureInPicture>
+      <source src="https://v1.pinimg.com/videos/iht/expMp4/98/02/c9/9802c94f47b76fa4cfacd1018aa00a55_720w.mp4" type="video/mp4">
+    </video>
+    <div class="glass-overlay-blur"></div>
+  </div>
+  
+  <!-- Clean, Straight Text Overlay (In Front of the Effect) -->
+  <div class="glass-content">
+    <div class="welcome-tag">Welcome to Benedict's Portfolio</div>
+    <div class="continue-tag">click to continue</div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb" onclick="if(event.target === this) closeLb()">
+  <span class="lb-close" onclick="closeLb()">✕</span>
+  <button class="lb-nav-btn prev" id="lbPrev" onclick="navigateLb(-1)">‹</button>
+  <div class="lb-content">
+    <img id="lb-img" src="" alt="">
+    <div class="lb-caption" id="lbCaption">Caption</div>
+  </div>
+  <button class="lb-nav-btn next" id="lbNext" onclick="navigateLb(1)">›</button>
+</div>
+
+<!-- GLASS INTERACTIVE MODAL BACKGROUND BLUR SIBLING -->
+<div class="glass-modal-blur-bg" id="modalBlurBg" onclick="closeGlassModal()"></div>
+
+<!-- GLASS INTERACTIVE MODAL -->
+<div class="glass-modal-overlay" id="glassModal" onclick="if(event.target === this) closeGlassModal()">
+  <div class="glass-modal-container">
+    <div class="modal-progress-bar-container">
+      <div class="modal-progress-bar" id="modalProgressBar"></div>
+    </div>
+    <div class="glass-modal-header">
+      <h3 class="glass-modal-title" id="modalTitle">Case Study</h3>
+      <button class="glass-modal-close" onclick="closeGlassModal()">✕</button>
+    </div>
+    <div class="glass-modal-body" id="modalContent">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+</div>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="#" class="logo">Benedict Thomas R <span>Portfolio</span></a>
+  <div class="nav-right">
+    <a href="#baja">EV Baja</a>
+    <a href="#reaction">Reaction Wheel</a>
+    <a href="#compactor">Compactor Redesign</a>
+    <a href="#whyme">Why Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#certs">Certifications</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:benedictthomasr@gmail.com" class="contact-btn">Email Me</a>
+  </div>
+  
+  <!-- Mobile Hamburger Menu Button -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="mobile-nav-drawer" id="mobileNavDrawer">
+  <div class="mobile-nav-links">
+    <a href="#baja" onclick="toggleMobileMenu()">EV Baja</a>
+    <a href="#reaction" onclick="toggleMobileMenu()">Reaction Wheel</a>
+    <a href="#compactor" onclick="toggleMobileMenu()">Compactor Redesign</a>
+    <a href="#whyme" onclick="toggleMobileMenu()">Why Me</a>
+    <a href="#skills" onclick="toggleMobileMenu()">Skills</a>
+    <a href="#certs" onclick="toggleMobileMenu()">Certifications</a>
+    <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+    <a href="mailto:benedictthomasr@gmail.com" class="mobile-contact-btn" onclick="toggleMobileMenu()">Email Me</a>
+  </div>
+</div>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Mechanical Engineering · Chennai, India</p>
+      <h1>Benedict<br><em>Thomas R</em></h1>
+      <p class="hero-role">Product Design & Fabrication</p>
+      <p class="hero-summary">A motivated second-year Mechanical Engineering student with hands-on experience in CAD modelling, product design, and manufacturing — built to contribute real engineering work from day one.</p>
+      
+      <!-- Sleek Frosted Glass About Me Teaser Tile -->
+      <div class="hero-about-card">
+        <p class="about-teaser">
+          Hi, I’m Benedict, a sophomore Mechanical Engineering undergraduate at Loyola ICAM. Driven by a lifelong curiosity for taking things apart, I bridge the gap between automotive design and physical engineering—from conceptual sketches to 3D CAD and Class A surface modeling.
+        </p>
+        <button class="read-story-btn" onclick="openCaseStudy('about')">Read My Story ↗</button>
+      </div>
+      
+      <!-- Focus Area Tag Pills -->
+      <div class="hero-pills">
+        <a href="#baja" class="hero-pill">EV Baja</a>
+        <a href="#reaction" class="hero-pill">Reaction Wheel</a>
+        <a href="#compactor" class="hero-pill">Trash Compactor</a>
+        <a href="#whyme" class="hero-pill">Why Me</a>
+        <a href="#skills" class="hero-pill">SolidWorks</a>
+        <a href="#skills" class="hero-pill">MIG Welding</a>
+        <a href="#skills" class="hero-pill">DFM</a>
+      </div>
+
+      <!-- Structured Info Bar -->
+      <div class="hero-contact-bar">
+        <div class="hero-contact-item">
+          <span class="icon">📍</span>
+          <span>Chennai, India</span>
+        </div>
+        <div class="hero-contact-separator"></div>
+        <div class="hero-contact-item">
+          <span class="icon">📧</span>
+          <span><a href="mailto:benedictthomasr@gmail.com">benedictthomasr@gmail.com</a></span>
+        </div>
+        <div class="hero-contact-separator"></div>
+        <div class="hero-contact-item">
+          <span class="icon">📞</span>
+          <span>+91 90801 14927</span>
+        </div>
+        <div class="hero-contact-separator"></div>
+        <div class="hero-contact-item">
+          <span class="icon">🔗</span>
+          <span><a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank">benedict-thomas-r</a></span>
+        </div>
+      </div>
+
+      <!-- Premium Call-To-Action Actions -->
+      <div class="contact-actions" style="margin: 0; justify-content: flex-start; animation: fadeUp .7s .4s ease both;">
+        <a href="mailto:benedictthomasr@gmail.com" class="contact-action-btn email-btn">Email Me 📧</a>
+        <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank" class="contact-action-btn linkedin-btn">LinkedIn Profile 🔗</a>
+        <a href="resume.html" class="contact-action-btn resume-btn">View Resume ↗</a>
+      </div>
+    </div>
+    
+    <div class="hero-visual-wrapper">
+      <div class="hero-image-container">
+        <div class="hero-image-bg-glow"></div>
+        <img src="benedict_profile_seamless.png" alt="Benedict Thomas R" class="hero-profile-img">
+      </div>
+    </div>
+  </div>
+  <span class="hero-scroll">↓ Scroll</span>
+</section>
+
+<!-- ══════════════════════ EV BAJA ══════════════════════ -->
+<section class="section-dark" id="baja">
+  <div class="inner">
+    <p class="sec-label">Project 01</p>
+    <h2 class="sec-title">EV BAJA — <em>Design &<br>Manufacturing</em> Team</h2>
+    <p class="sec-desc">2 competition seasons. Space-frame chassis designed in SolidWorks, fabricated on the shop floor — and driven to competition as E90.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">2</div><div class="label">Competition Seasons</div></div>
+      <div class="stat"><div class="num">E90</div><div class="label">Vehicle Name</div></div>
+      <div class="stat"><div class="num">MIG</div><div class="label">Welding Process</div></div>
+    </div>
+
+    <!-- Hero feature: E90 vehicle -->
+    <div class="feature-hero dark-violet" style="margin-bottom:32px;">
+      <div class="fh-content">
+        <p class="card-tag">Competition Vehicle</p>
+        <h3>From <em>sketch</em> to<br>start line</h3>
+        <p>The E90 competed in 2 back-to-back BAJA seasons. Structural members designed in SolidWorks, fabricated with jig-based alignment and MIG welding — maintaining load-path integrity throughout.</p>
+        <a href="javascript:void(0)" class="read-more-btn" onclick="openCaseStudy('baja')">Read Full Story ↗</a>
+      </div>
+      <div class="fh-visual">
+        <img src="baja_e90.png" alt="EV BAJA E90 vehicle" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <!-- Card grid: chassis + fabrication -->
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-img tall">
+          <img src="baja_chassis.png" alt="Space-frame chassis" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Fabrication</p>
+        <h4 class="card-title">Space-frame chassis</h4>
+        <p class="card-desc">Steel tube space-frame built with jig-based alignment for dimensional accuracy across all nodes.</p>
+      </div>
+      <div class="card">
+        <div class="card-img tall">
+          <img src="baja_chassis_top.png" alt="Chassis top view" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Structural</p>
+        <h4 class="card-title">Chassis — top view</h4>
+        <p class="card-desc">Bird's-eye view of the full frame — front suspension pickup points, bracing, and rear section visible.</p>
+      </div>
+      <div class="card">
+        <div class="card-img tall">
+          <img src="baja_jig.jpeg" alt="Jig alignment" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Precision Alignment</p>
+        <h4 class="card-title">Jig-based tube alignment</h4>
+        <p class="card-desc">Tubes aligned on a precision jig before welding — ensuring repeatable geometry and correct load paths.</p>
+      </div>
+    </div>
+
+    <div class="card-grid card-grid-2">
+      <div class="card">
+        <div class="card-img">
+          <img src="baja_fabrication.jpeg" alt="Shop floor fabrication" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Shop Floor</p>
+        <h4 class="card-title">Hands-on fabrication</h4>
+        <p class="card-desc">Interpreted engineering drawings on the shop floor to guide tube cutting, alignment, and MIG welding through to full assembly.</p>
+      </div>
+      <div class="card">
+        <div class="card-img">
+          <img src="baja_solidworks.png" alt="SolidWorks CAD" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">CAD Design</p>
+        <h4 class="card-title">SolidWorks structural design</h4>
+        <p class="card-desc">Secondary structural members designed in SolidWorks — maintaining weight targets and load-path integrity across the chassis.</p>
+      </div>
+    </div>
+
+    <!-- Gusset / bracket CAD extras -->
+    <p style="font-family:'Fraunces',serif; font-size:22px; font-weight:300; color:rgba(255,255,255,0.7); margin-bottom:20px;">Component <em style="font-style:italic; color:#c084fc">details</em></p>
+    <div class="photo-strip">
+      <img src="baja_gusset_iso.png" alt="Gusset bracket ISO" onclick="openLb(this.src)">
+      <img src="baja_gusset_flat.png" alt="Gusset bracket flat" onclick="openLb(this.src)">
+    </div>
+    <p style="font-size:13px; color:rgba(255,255,255,0.25); margin-top:-16px;">↑ Scroll to see more · click to expand</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ REACTION WHEEL ══════════════════════ -->
+<section class="section-light" id="reaction">
+  <div class="inner">
+    <p class="sec-label">Project 02</p>
+    <h2 class="sec-title">Compact <em>Reaction Wheel</em><br>— TN IMPACT Hackathon 2026</h2>
+    <p class="sec-desc">From CAD to working demonstrator in one hackathon. Awarded Special Prize ₹5,000 — spacecraft attitude control that you can hold in your hand.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">₹5k</div><div class="label">Special Prize Won</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Spoke Aluminium Rim</div></div>
+      <div class="stat"><div class="num">ESP32</div><div class="label">Microcontroller</div></div>
+    </div>
+
+    <!-- Hero: Physical build -->
+    <div class="feature-hero dark-blue" style="margin-bottom:32px;">
+      <div class="fh-content">
+        <p class="card-tag" style="color:rgba(255,255,255,0.3)">Award-winning Build</p>
+        <h3 style="color:#fff">CAD to <em>working demo</em><br>— one hackathon</h3>
+        <p style="color:rgba(255,255,255,0.55)">Integrated a BLDC motor, MPU-6050 IMU, L298N driver, and ESP32 microcontroller into a fully working spacecraft attitude-control demonstrator. The 3-spoke aluminium rim was CNC-machined from the SolidWorks drawing.</p>
+        <a href="javascript:void(0)" class="read-more-btn" onclick="openCaseStudy('reaction')">Read Full Story ↗</a>
+      </div>
+      <div class="fh-visual">
+        <img src="rw_physical.png" alt="Reaction wheel physical build" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <div class="card-grid card-grid-2" style="margin-bottom:32px;">
+      <div class="card">
+        <div class="card-img">
+          <img src="rw_electronics.png" alt="Electronics assembly" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Electronics Integration</p>
+        <h4 class="card-title">MPU-6050 · L298N · ESP32</h4>
+        <p class="card-desc">Full electronics stack wired and integrated — IMU sensing, motor driver, and microcontroller housed within the 3D-printed chassis.</p>
+      </div>
+      <div class="card">
+        <div class="card-img">
+          <img src="rw_housing_iso.png" alt="Motor housing CAD" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">CAD — Housing</p>
+        <h4 class="card-title">Motor + electronics housing</h4>
+        <p class="card-desc">Custom housing designed in SolidWorks to locate the BLDC motor and electronics, with cutouts for wiring and sensor access.</p>
+      </div>
+    </div>
+
+    <!-- Interactive CAD Assembly Explorer -->
+    <div class="cad-explorer-card">
+      <div class="cad-explorer-header">
+        <div class="cad-explorer-title">
+          <span class="icon">⚙️</span>
+          <h4>Reaction Wheel Assembly Explorer</h4>
+        </div>
+        <div class="cad-explorer-desc">Click the step buttons to see the module assemble layer-by-layer.</div>
+      </div>
+      <div class="cad-explorer-body">
+        <div class="cad-explorer-display">
+          <img id="rwCadExplorerImg" src="rw_housing_front.png" alt="Step 1">
+          <div class="cad-explorer-overlay-label" id="rwCadExplorerLabel">Step 1: Motor Housing</div>
+        </div>
+        <div class="cad-explorer-controls">
+          <div class="cad-steps">
+            <button class="cad-step-dot active" onclick="setExplorerStep('rw', 0)">1</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('rw', 1)">2</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('rw', 2)">3</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('rw', 3)">4</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('rw', 4)">5</button>
+          </div>
+          <div class="cad-progress-bar-bg">
+            <div class="cad-progress-bar-fill" id="rwCadProgress"></div>
+          </div>
+          <div class="cad-step-text" id="rwCadStepText">
+            <strong>Base Motor Housing:</strong> Secondary structural outer shell modeled in SolidWorks with perfect 3D-printing tolerances to house the high-speed BLDC stator securely.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD renders strip -->
+    <p style="font-family:'Fraunces',serif; font-size:22px; font-weight:300; color:rgba(255,255,255,0.7); margin-bottom:20px;">Wheel CAD <em style="font-style:italic; color:var(--accent-color)">renders</em></p>
+    <div class="photo-strip">
+      <img src="rw_cad_front.png" alt="Wheel CAD front" onclick="openLb(this.src)">
+      <img src="rw_cad_iso.png" alt="Wheel CAD isometric" onclick="openLb(this.src)">
+      <img src="rw_housing_front.png" alt="Housing front view" onclick="openLb(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TRASH COMPACTOR ══════════════════════ -->
+<section class="section-mid" id="compactor">
+  <div class="inner">
+    <p class="sec-label">Project 03</p>
+    <h2 class="sec-title">Trash Compactor <em>Redesign</em></h2>
+    <p class="sec-desc">A product design deep-dive — identified a real UX flaw in the Joseph Joseph Titan compactor and engineered a fix from the ground up.</p>
+
+    <!-- Hero: Open assembly -->
+    <div class="feature-hero dark-violet" style="margin-bottom:32px;">
+      <div class="fh-content">
+        <p class="card-tag">UX Problem → Engineering Solution</p>
+        <h3><em>Horizontal</em> removal.<br>One hand. No strain.</h3>
+        <p>The original design forces users to lift heavy bags upward. Redesigned the front cabinet door with a hole-pin hinge and push-to-open latch for single-hand horizontal bag removal — eliminating the core pain point.</p>
+        <a href="javascript:void(0)" class="read-more-btn" onclick="openCaseStudy('compactor')">Read Full Story ↗</a>
+      </div>
+      <div class="fh-visual">
+        <img src="trash_open.png" alt="Compactor CAD open" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-img tall">
+          <img src="trash_closed.png" alt="Compactor closed" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Final Assembly</p>
+        <h4 class="card-title">Closed configuration</h4>
+        <p class="card-desc">Clean exterior — foot pedal actuation, flush front door, and compactor plate hidden above.</p>
+      </div>
+      <div class="card">
+        <div class="card-img tall">
+          <img src="trash_top.png" alt="Compactor top view" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Compactor Mechanism</p>
+        <h4 class="card-title">Top — compactor plate</h4>
+        <p class="card-desc">Internal compactor plate with latch rails, validated via SolidWorks interference detection and motion study.</p>
+      </div>
+      <div class="card">
+        <div class="card-img tall">
+          <img src="trash_hinge.png" alt="Hinge detail" onclick="openLb(this.src)">
+        </div>
+        <p class="card-tag">Hinge Detail</p>
+        <h4 class="card-title">Hole-pin hinge system</h4>
+        <p class="card-desc">Door reinforced with internal ribs sized to distribute compaction loads and maintain latch alignment under repeated cycling.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Trash Compactor Assembly Explorer -->
+    <div class="cad-explorer-card">
+      <div class="cad-explorer-header">
+        <div class="cad-explorer-title">
+          <span class="icon">🗑️</span>
+          <h4>Trash Compactor Redesign Assembly</h4>
+        </div>
+        <div class="cad-explorer-desc">Click the step buttons to see the horizontal opening redesign sequence.</div>
+      </div>
+      <div class="cad-explorer-body">
+        <div class="cad-explorer-display">
+          <img id="tcCadExplorerImg" src="trash_closed.png" alt="Step 1">
+          <div class="cad-explorer-overlay-label" id="tcCadExplorerLabel">Step 1: Closed Cabinet</div>
+        </div>
+        <div class="cad-explorer-controls">
+          <div class="cad-steps">
+            <button class="cad-step-dot active" onclick="setExplorerStep('tc', 0)">1</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('tc', 1)">2</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('tc', 2)">3</button>
+            <button class="cad-step-dot" onclick="setExplorerStep('tc', 3)">4</button>
+          </div>
+          <div class="cad-progress-bar-bg">
+            <div class="cad-progress-bar-fill" id="tcCadProgress"></div>
+          </div>
+          <div class="cad-step-text" id="tcCadStepText">
+            <strong>Minimalist Outer Footprint:</strong> Elegant exterior footprint concealing all compaction levers, keeping structural elements clean and space-efficient.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ WHY ME ══════════════════════ -->
+<section class="section-dark" id="whyme">
+  <div class="inner">
+    <p class="sec-label">Philosophy</p>
+    <h2 class="sec-title">Why <em>Me?</em></h2>
+    <p class="sec-desc">A brief reflection on my approach to engineering, hands-on learning, and project execution.</p>
+    
+    <div class="whyme-grid">
+      <div class="whyme-intro">
+        <div class="whyme-quote">
+          I’m still early in my engineering journey, and I won’t pretend otherwise. What I can say is that I’ve made a point of <em>doing things</em>, not just studying them.
+        </div>
+        <div class="whyme-quote-author">— Benedict Thomas R</div>
+      </div>
+      
+      <div class="whyme-cards">
+        <div class="whyme-card">
+          <span class="whyme-card-num">01</span>
+          <h4 class="whyme-card-title">Closing the Gap</h4>
+          <p class="whyme-card-desc">While most of my coursework is theoretical, I’ve tried to close that gap wherever I could — by joining the EV BAJA team, by building a working prototype at a hackathon, and by taking on a product redesign project that required me to think like both a designer and a manufacturer.</p>
+        </div>
+        <div class="whyme-card">
+          <span class="whyme-card-num">02</span>
+          <h4 class="whyme-card-title">I Follow Through</h4>
+          <p class="whyme-card-desc">The projects on this portfolio aren’t concepts — they’re things I finished. The chassis was welded. The reaction wheel spun. The redesign was modelled, validated, and documented.</p>
+        </div>
+        <div class="whyme-card">
+          <span class="whyme-card-num">03</span>
+          <h4 class="whyme-card-title">Full Process Execution</h4>
+          <p class="whyme-card-desc">I work across the full process. I’ve done CAD, fabrication, and electronics integration — not deeply in any one of them yet, but enough to understand how decisions in one affect the others.</p>
+        </div>
+        <div class="whyme-card">
+          <span class="whyme-card-num">04</span>
+          <h4 class="whyme-card-title">Motivated to Learn &amp; Contribute</h4>
+          <p class="whyme-card-desc">I took on two industry simulations — GE Aerospace and Siemens — outside of coursework because I wanted exposure to how engineering problems are framed in industry, not just in textbooks. I’m looking for an internship where I can contribute meaningfully and learn a great deal in return. I’m not the finished product — but I’m someone who shows up, takes initiative, and takes the work seriously.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ SKILLS ══════════════════════ -->
+<section class="section-light" id="skills">
+  <div class="inner">
+    <p class="sec-label">Capabilities</p>
+    <h2 class="sec-title">Skills &amp; <em>Tools</em></h2>
+    <p class="sec-desc">Combining digital design with hands-on fabrication — from first sketch to finished part.</p>
+
+    <div class="skills-tab-container" style="margin-bottom:48px;">
+      <!-- Left Column: Navigation Tabs -->
+      <div class="skills-tab-nav">
+        <button class="skills-tab-btn active" onclick="switchSkillTab(0)">
+          <span class="tab-num">01</span> Digital CAD
+        </button>
+        <button class="skills-tab-btn" onclick="switchSkillTab(1)">
+          <span class="tab-num">02</span> Fabrication
+        </button>
+        <button class="skills-tab-btn" onclick="switchSkillTab(2)">
+          <span class="tab-num">03</span> Mechatronics
+        </button>
+        <button class="skills-tab-btn" onclick="switchSkillTab(3)">
+          <span class="tab-num">04</span> Languages
+        </button>
+        <button class="skills-tab-btn" onclick="switchSkillTab(4)">
+          <span class="tab-num">05</span> Education
+        </button>
+      </div>
+
+      <!-- Right Column: Tab Panels -->
+      <div class="skills-tab-panels">
+        <!-- Panel 1: Digital Design & CAD -->
+        <div class="skills-tab-panel active">
+          <div class="minimal-skills-grid">
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">SolidWorks</span>
+                <span class="minimal-skill-badge">Advanced</span>
+              </div>
+              <p class="minimal-skill-desc">Parametric part modeling, bottom-up/top-down assembly, engineering drawings &amp; GD&amp;T.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 90%;"></div>
+              </div>
+            </div>
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">Conceptual Sketching</span>
+                <span class="minimal-skill-badge">Styling</span>
+              </div>
+              <p class="minimal-skill-desc">Form exploration, industrial design ideation, perspective drawing, and vehicle aesthetics.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 85%;"></div>
+              </div>
+            </div>
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">Motion Study &amp; FEA</span>
+                <span class="minimal-skill-badge">Analytical</span>
+              </div>
+              <p class="minimal-skill-desc">SolidWorks dynamic motion study, kinematics simulation, and component interference checks.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 78%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Fabrication & Shop Floor -->
+        <div class="skills-tab-panel">
+          <div class="minimal-skills-grid">
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">MIG Welding</span>
+                <span class="minimal-skill-badge">Chassis</span>
+              </div>
+              <p class="minimal-skill-desc">Chassis steel tube fusion, structural member welding, and high-load safety standard joints.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 82%;"></div>
+              </div>
+            </div>
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">Jig-based Assembly</span>
+                <span class="minimal-skill-badge">Precision</span>
+              </div>
+              <p class="minimal-skill-desc">Designing custom wood/metal alignment fixtures for repeatable space-frame tube accuracy.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 88%;"></div>
+              </div>
+            </div>
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">Hands-on Manufacturing</span>
+                <span class="minimal-skill-badge">Shop Floor</span>
+              </div>
+              <p class="minimal-skill-desc">Interpreting technical prints, tube cutting/notching, metal finishing, and powertrain assembly.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 90%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Systems & Controls Integration -->
+        <div class="skills-tab-panel">
+          <div class="minimal-skills-grid">
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">Electronics Integration</span>
+                <span class="minimal-skill-badge">Hardware</span>
+              </div>
+              <p class="minimal-skill-desc">BLDC motors, L298N drivers, MPU-6050 IMU accelerometer, and high-voltage safety paths.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">ESP32 Mechatronics</span>
+                <span class="minimal-skill-badge">Controllers</span>
+              </div>
+              <p class="minimal-skill-desc">Microcontroller scripting, I2C communication routing, PWM signal setup, and telemetry loops.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 75%;"></div>
+              </div>
+            </div>
+            <div class="minimal-skill-card">
+              <div class="minimal-skill-header">
+                <span class="minimal-skill-title">Engineering Drawings &amp; DFM</span>
+                <span class="minimal-skill-badge">Standardized</span>
+              </div>
+              <p class="minimal-skill-desc">GD&amp;T standards, tolerance stack-up control, and machining-friendly feature modeling.</p>
+              <div class="minimal-skill-progress-container">
+                <div class="minimal-skill-progress-fill" style="width: 84%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4: Global Communicator -->
+        <div class="skills-tab-panel">
+          <div class="minimal-lang-list">
+            <div class="minimal-lang-row">
+              <div class="minimal-lang-left">
+                <div class="minimal-lang-code">EN</div>
+                <span class="minimal-lang-name">English</span>
+              </div>
+              <div class="minimal-lang-right">
+                <span class="minimal-lang-level">Fluent / Professional</span>
+                <div class="minimal-lang-dot-track">
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                </div>
+              </div>
+            </div>
+            <div class="minimal-lang-row">
+              <div class="minimal-lang-left">
+                <div class="minimal-lang-code">TA</div>
+                <span class="minimal-lang-name">Tamil</span>
+              </div>
+              <div class="minimal-lang-right">
+                <span class="minimal-lang-level">Native / Mother Tongue</span>
+                <div class="minimal-lang-dot-track">
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                </div>
+              </div>
+            </div>
+            <div class="minimal-lang-row">
+              <div class="minimal-lang-left">
+                <div class="minimal-lang-code">DE</div>
+                <span class="minimal-lang-name">German</span>
+              </div>
+              <div class="minimal-lang-right">
+                <span class="minimal-lang-level">Elementary (A1 level)</span>
+                <div class="minimal-lang-dot-track">
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot filled"></div>
+                  <div class="minimal-lang-dot"></div>
+                  <div class="minimal-lang-dot"></div>
+                  <div class="minimal-lang-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 5: Academic Foundation -->
+        <div class="skills-tab-panel">
+          <div class="minimal-edu-card">
+            <div class="minimal-edu-header">
+              <div>
+                <h4 class="minimal-edu-degree">B.E. Mechanical Engineering</h4>
+                <div class="minimal-edu-school">Loyola-ICAM College of Engineering &amp; Technology</div>
+              </div>
+              <div class="minimal-edu-stamp">LICET</div>
+            </div>
+            <div class="minimal-edu-stats">
+              <div class="minimal-edu-stat">
+                <span class="minimal-edu-stat-label">CGPA</span>
+                <span class="minimal-edu-stat-value">8.0+</span>
+              </div>
+              <div class="minimal-edu-stat">
+                <span class="minimal-edu-stat-label">Status</span>
+                <span class="minimal-edu-stat-value">Sophomore</span>
+              </div>
+              <div class="minimal-edu-stat">
+                <span class="minimal-edu-stat-label">Location</span>
+                <span class="minimal-edu-stat-value">Chennai, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CERTS ══════════════════════ -->
+<section class="section-dark" id="certs">
+  <div class="inner">
+    <p class="sec-label">Certifications</p>
+    <h2 class="sec-title">Industry <em>Training</em></h2>
+    <p class="sec-desc">Real-world engineering simulations through Forage — GE Aerospace and Siemens Operations.</p>
+
+    <div class="cert-row">
+      <div class="cert-card ge" onclick="openCert('ge')">
+        <div class="cert-logo ge-logo">GE<br>Aerospace</div>
+        <div class="cert-info">
+          <h4>Explore Engineering Job Simulation</h4>
+          <p>Energy source design · Compression &amp; bypass ratio analysis<br><span style="opacity:0.4">July 2025 · Forage</span></p>
+        </div>
+      </div>
+      <div class="cert-card siemens" onclick="openCert('siemens')">
+        <div class="cert-logo siemens-logo">SIEMENS</div>
+        <div class="cert-info">
+          <h4>Operations Industrial Engineer Job Simulation</h4>
+          <p>Time studies · Factory layout proposals<br><span style="opacity:0.4">June 2025 · Forage</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CONTACT ══════════════════════ -->
+<section class="section-light" id="contact">
+  <div class="inner" style="text-align:center; padding-top:20px; padding-bottom:20px;">
+    <p class="sec-label" style="justify-content:center;">Get in touch</p>
+    <h2 class="sec-title" style="margin-bottom:20px;">Looking for an <em>internship</em><br>in product design &amp; manufacturing</h2>
+    <p style="font-size:17px; color:rgba(255,255,255,0.55); max-width:500px; margin:0 auto 40px; line-height:1.7;">Based in Chennai · available for internships at startups and MNCs · ready to contribute real engineering work from day one.</p>
+    <div class="contact-actions">
+      <a href="mailto:benedictthomasr@gmail.com" class="contact-action-btn email-btn">Email Me 📧</a>
+      <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank" class="contact-action-btn linkedin-btn">LinkedIn Profile 🔗</a>
+      <a href="resume.html" class="contact-action-btn resume-btn">View Resume ↗</a>
+    </div>
+    <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,0.4);">+91 90801 14927 · Chennai, India</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Benedict <em>Thomas R</em></div>
+  <p>Mechanical Engineering Student · Loyola-ICAM College of Engineering and Technology</p>
+  <div style="margin-top:16px;">
+    <a href="mailto:benedictthomasr@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank">LinkedIn</a>
+    <a href="resume.html">Resume</a>
+    <a href="#baja">EV Baja</a>
+    <a href="#reaction">Reaction Wheel</a>
+    <a href="#compactor">Compactor</a>
+    <a href="#whyme">Why Me</a>
+  </div>
+  <a href="#" class="back-btn">↑ Back to top</a>
+</footer>
+
+<script>
+// Minimalist Skills Tab Switcher
+function switchSkillTab(index) {
+  const buttons = document.querySelectorAll('.skills-tab-btn');
+  const panels = document.querySelectorAll('.skills-tab-panel');
+  
+  buttons.forEach((btn, i) => {
+    if (i === index) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  
+  panels.forEach((panel, i) => {
+    if (i === index) {
+      panel.classList.add('active');
+    } else {
+      panel.classList.remove('active');
+    }
+  });
+}
+
+// Entrance Transition Logic
+const glassScreen = document.getElementById('glassScreen');
+let transitionTriggered = false;
+
+function enterSite(skipStorage = false) {
+  if (transitionTriggered) return;
+  transitionTriggered = true;
+  
+  if (!skipStorage) {
+    sessionStorage.setItem('enteredSite', 'true');
+  }
+  
+  if (glassScreen) {
+    glassScreen.classList.add('hidden');
+    const video = glassScreen.querySelector('video');
+    if (video) {
+      try {
+        video.pause();
+      } catch (e) {}
+    }
+    setTimeout(() => {
+      glassScreen.style.display = 'none';
+    }, 1200);
+  }
+  document.body.style.overflow = '';
+  
+  // High premium entrance animation for hero items
+  const heroImage = document.querySelector('.hero-image-container');
+  if (heroImage) {
+    heroImage.style.animation = 'none';
+    heroImage.offsetHeight; // trigger reflow
+    heroImage.style.animation = 'fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) both';
+  }
+}
+
+// Check if user has already entered in this session
+if (sessionStorage.getItem('enteredSite') === 'true') {
+  transitionTriggered = true;
+  document.body.style.overflow = '';
+  if (glassScreen) {
+    glassScreen.style.display = 'none';
+    glassScreen.classList.add('hidden');
+  }
+  
+  // Restore scroll position
+  window.addEventListener('load', () => {
+    const savedScroll = sessionStorage.getItem('portfolioScrollY');
+    if (savedScroll) {
+      const scrolled = parseFloat(savedScroll);
+      window.scrollTo({ top: scrolled, behavior: 'instant' });
+      document.documentElement.style.setProperty('--scroll-offset-bg', `${scrolled}px`);
+      document.documentElement.style.setProperty('--scroll-offset-mid', `${scrolled}px`);
+      document.documentElement.style.setProperty('--scroll-offset-fg', `${scrolled}px`);
+    }
+  });
+} else {
+  // Lock scroll on start for glass refraction entry screen
+  document.body.style.overflow = 'hidden';
+}
+
+// Event Listeners for Entrance
+window.addEventListener('wheel', (e) => {
+  if (!transitionTriggered && e.deltaY > 0) {
+    enterSite();
+  }
+}, { passive: true });
+
+if (glassScreen) {
+  glassScreen.addEventListener('touchmove', (e) => {
+    if (!transitionTriggered) {
+      if (e.cancelable) e.preventDefault();
+      enterSite();
+    }
+  }, { passive: false });
+  
+  glassScreen.addEventListener('click', () => enterSite());
+}
+
+// High-Performance Scroll Parallax & Universal Parallax Engine
+let scrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (scrollScheduled) return;
+  scrollScheduled = true;
+  requestAnimationFrame(() => {
+    const scrolled = window.pageYOffset;
+    document.documentElement.style.setProperty('--scroll-offset-bg', `${scrolled}px`);
+    document.documentElement.style.setProperty('--scroll-offset-mid', `${scrolled}px`);
+    document.documentElement.style.setProperty('--scroll-offset-fg', `${scrolled}px`);
+    
+    if (transitionTriggered) {
+      sessionStorage.setItem('portfolioScrollY', scrolled.toString());
+    }
+    
+    // Universal Parallax translation
+    const parallaxEls = document.querySelectorAll('[data-parallax-speed]');
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0.1;
+      const yOffset = -(scrolled * speed);
+      el.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+    });
+    
+    scrollScheduled = false;
+  });
+}, { passive: true });
+
+// Section nav highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.top-nav .nav-right a:not(.contact-btn)');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.top-nav .nav-right a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Card fade-in on scroll
+const cards = document.querySelectorAll('.card');
+const cardObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.01 });
+cards.forEach(c => cardObs.observe(c));
+
+// Lightbox
+function openLb(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb').classList.add('open');
+}
+function closeLb() {
+  document.getElementById('lb').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLb(); });
+
+// Eased Cursor Glow Spotlight
+const interactiveGlow = document.querySelector('.interactive-glow');
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let glowX = mouseX;
+let glowY = mouseY;
+
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY + window.scrollY;
+}, { passive: true });
+
+function animateGlow() {
+  if (!document.body.classList.contains('modal-open')) {
+    if (interactiveGlow) {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      interactiveGlow.style.transform = `translate3d(calc(${glowX}px - 50%), calc(${glowY}px - 50%), 0)`;
+    }
+  }
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+
+// ── DYNAMIC CASE STUDY & CERTIFICATE MODAL ENGINE ──
+const caseStudies = {
+  about: {
+    title: "My Story — Benedict Thomas R",
+    content: `
+      <h4>Curiosity &amp; Mechanics</h4>
+      <div class="modal-figure">
+        <img src="benedict_profile_seamless.png" alt="Benedict Profile Seamless">
+        <p class="modal-caption">Figure 1: Benedict Thomas R — Sophomore Mechanical Engineering Undergraduate</p>
+      </div>
+      <p>Hi, I’m <strong>Benedict Thomas R</strong>, a sophomore Mechanical Engineering undergraduate student at Loyola ICAM.</p>
+      <p>From a young age, I have always been intrigued by the mechanics of the world around me. Whether it was a simple toy train or the family moped, I had an irresistible urge to take things apart. My mom would often yell at me for "breaking" things, but to me, dismantling them was the only way to truly discover how they worked. As I grew up, everything changed—except for that core curiosity and the burning desire to understand how the physical world functions. That driving force, combined with a lifelong love for cars and automobiles, led me to choose mechanical engineering.</p>
+      <p>I carry that exact same spirit into my college projects and engineering experiences today.</p>
+      
+      <h4>The Art of Conceptual Design</h4>
+      <p>Having been naturally inclined toward sketching since childhood, I began exploring conceptual automotive sketching in the 10th grade. This passion naturally evolved from pen and paper into the digital realm. I began translating concepts into 3D models using SolidWorks, a tool I am continuously mastering.</p>
+      
+      <h4>Bridging Engineering &amp; Industrial Design</h4>
+      <p>Recently, I’ve taken an exciting new step in my design journey by learning the fundamentals of Class A Surface Modeling in Autodesk Alias. This allows me to bridge the gap between engineering and industrial design, bringing the free-form conceptual sketches I drew years ago to life with production-ready, high-quality surfaces.</p>
+      
+      <p>Thank you for visiting my space. I am incredibly happy to share the projects I’ve built and the experiences I’ve gathered along the way—and I am even more excited for what is to come next.</p>
+      
+      <div class="takeaway-box">
+        <h5>Current Focus &amp; Goals</h5>
+        <ul>
+          <li><strong>Undergrad:</strong> Mechanical Engineering Sophomore at Loyola-ICAM (Chennai, India)</li>
+          <li><strong>Digital Artistry:</strong> Conceptual Sketching &amp; Automotive Styling</li>
+          <li><strong>CAD &amp; Surfacing:</strong> SolidWorks and Autodesk Alias (Class A Surfacing)</li>
+        </ul>
+      </div>
+    `
+  },
+  baja: {
+    title: "EV BAJA — <em>Design & Manufacturing</em> Team",
+    content: `
+      <h4>From Combustion to Electric</h4>
+      <div class="modal-figure">
+        <img src="baja_e90.png" alt="EV BAJA E90 vehicle">
+        <p class="modal-caption">Figure 2: eBAJA E90 Electric Competition Vehicle at NATRAX</p>
+      </div>
+      <p>Driven by a passion for automotive engineering, I joined our university’s BAJA team. Because recruitment happened late in the season, I was immediately thrown into the deep end, diving straight into the final manufacturing and assembly phase of our mBAJA (combustion) vehicle for the ATVC 2025 event. On the shop floor, I worked on critical vehicle interfaces, including the brake mounts, driver harness, seat mounts, side panels, and final painting.</p>
+      <p>By my second year, our team took on a massive new challenge: transitioning from internal combustion to electric. We were embarking on a brand-new chapter: <strong>eBAJA</strong>.</p>
+      
+      <h4>Fabricating the Roll Cage & Secondary Elements</h4>
+      <div class="modal-figure" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <img src="baja_chassis.png" alt="Space-frame chassis">
+        <img src="baja_chassis_top.png" alt="Chassis top view">
+      </div>
+      <p class="modal-caption" style="margin-top: 4px !important;">Figure 3: SolidWorks space-frame chassis design and top bracing details</p>
+      <p>For the eBAJA build, my primary responsibilities shifted to the roll cage fabrication and assembly. I took ownership of designing several secondary structural members in SolidWorks. With deadlines rapidly approaching, the team pushed through grueling, nonstop days on the shop floor—simultaneously managing parts procurement while I interpreted CAD designs into physical reality.</p>
+      
+      <h4>The SAE BAJA 2026 Event at NATRAX</h4>
+      <p>Our hard work culminated at the SAE BAJA 2026 event at NATRAX in Pithampur, Indore. The environment was brutal, testing us with extreme polar weather—from scorching daytime heat to freezing nights on the tarmac.</p>
+      <p>Presentation was only the first step; the real trial began at Technical Inspection (TI). Facing initial rejections and strict directives from the judges, we scrambled into the hot pit to make immediate structural amends. With time running out, we resorted to "makeshift engineering," utilizing whatever materials we had on hand to fabricate unexpected fixes and weld in critical gussets.</p>
+      
+      <h4>High-Voltage Debugging & Technical Inspection</h4>
+      <p>Because high-voltage (HV) powertrain systems were entirely new territory for our team, troubleshooting the electronics was a massive uphill battle. But through sheer persistence, late-night debugging, and a collective refusal to quit, we finally cleared TI. Clearing TI was our ticket to the dynamic tracks, leading us directly to the high-stakes brake test.</p>
+      
+      <h4>Heartbreak at the Brake Test</h4>
+      <p>With our hearts pounding, we faced our next hurdle: our brakes needed bleeding. Working through the falling darkness, a teammate and I took turns pumping the pedals and bleeding the lines, an exhausting physical effort that left our hamstrings burning.</p>
+      <p>We were so close. But on our final run of the brake test, disaster struck—the motor controller gave up on us.</p>
+      
+      <div class="takeaway-box">
+        <h5>Key Technical & Personal Takeaways</h5>
+        <ul>
+          <li><strong>Moral of a Team:</strong> Learned how to stand resilient, keep composure, and adapt when everything goes entirely against anticipation.</li>
+          <li><strong>Multi-Disciplinary Action:</strong> Gained invaluable technical lessons about high-voltage electric powertrains, braking systems, and structural tube fabrication.</li>
+          <li><strong>Troubleshooting:</strong> Understood that engineering doesn't end with a CAD model — success depends on debugging and shop floor persistence under pressure.</li>
+        </ul>
+      </div>
+    `
+  },
+  reaction: {
+    title: "Compact <em>Reaction Wheel</em> Module — Hackathon 2026",
+    content: `
+      <h4>Childhood Curiosity & Angular Momentum</h4>
+      <div class="modal-figure" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px;">
+        <img src="rw_physical.png" alt="Reaction wheel physical build">
+        <img src="rw_electronics.png" alt="Electronics assembly">
+      </div>
+      <p class="modal-caption" style="margin-top: 4px !important;">Figure 4: Final physical stabilizer module and integrated electronics stack</p>
+      <p>We started out exploring multiple problem statements for the TN IMPACT Hackathon 2026, hosted by the Tamil Nadu Centre of Excellence for Advanced Manufacturing (TANCAM) at the KIT-Kalaignarkarunanidhi Institute of Technology. Ultimately, we landed on a project driven by pure childhood curiosity: <strong>"Designing and Developing a Compact Reaction Wheel/Gyroscopic Stabilizer Module."</strong></p>
+      <p>We wanted to answer a fundamental question: Why do we lean into fast turns rather than just turning the handlebars while riding a bicycle? The answer, hiding in plain sight, was Angular Momentum—a physics principle that governs everything from our childhood bicycles to maneuvering the International Space Station (ISS).</p>
+      
+      <h4>Designing in SolidWorks & Machining</h4>
+      <p>I took charge of the CAD design and reaction wheel modeling in SolidWorks, while my teammate handled the analytical part and coding. After a few design iterations and 3D-printed prototypes to understand the scale, I finalized the module. The 3-spoke aluminum rim was CNC-machined from our drawings, housing a BLDC motor, MPU-6050 IMU, L298N driver, and ESP32 microcontroller.</p>
+      
+      <h4>Humbled by Manufacturing Tolerances</h4>
+      <p>However, hardware always finds a way to humble you. Once our aluminum wheel was machined and the module 3D printed, we realized a critical error: I had underestimated manufacturing tolerances, ruining our plans for a snug fit. With the clock ticking down to the eleventh hour, I resorted to old-school engineering—using a chisel and a file to manually adjust the parts until the motor shaft, wheel, and electronics finally fit together perfectly.</p>
+      
+      <h4>Pitching to the Jury</h4>
+      <p>During the presentation, we had the privilege of pitching to a jury that included Mr. Harish Vardhana, Founder and Director of KAL-M Robotics and Innovations. While a last-minute coding problem prevented us from demonstrating the pitch-control maneuver, he highly appreciated our core work and presentation, and we successfully demonstrated a functioning model, winning a Special Prize of ₹5,000.</p>
+      
+      <div class="takeaway-box">
+        <h5>Key Technical & Personal Takeaways</h5>
+        <ul>
+          <li><strong>Tolerances Matter:</strong> Never overlook tolerances; nominal dimensions rarely work in the real world. The slightest oversight early on can compound into a massive roadblock at the finish line.</li>
+          <li><strong>Eleventh-Hour Action:</strong> When things go wrong under tight deadlines, don't step back—grab a file and fix it.</li>
+          <li><strong>Communication:</strong> Team communication and alignment between physical chassis design and analytical calculations are crucial for multi-disciplinary projects.</li>
+        </ul>
+      </div>
+    `
+  },
+  compactor: {
+    title: "Trash Compactor <em>Redesign</em> Case Study",
+    content: `
+      <h4>Identifying a Real UX Flaw</h4>
+      <div class="modal-figure" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <img src="trash_closed.png" alt="Compactor closed">
+        <img src="trash_open.png" alt="Compactor open">
+      </div>
+      <p class="modal-caption" style="margin-top: 4px !important;">Figure 5: Compactor redesign closed and open configurations for horizontal extraction</p>
+      <p>Taking out the trash frequently is one of the most tedious household chores. To make matters worse, improper sealing often leads to mysterious, frustrating liquid leaks. Determined to find a solution, I dove into deep research and realized that trash compaction was the answer. It is a genius way to reduce the frequency of disposal trips while keeping the waste managed and compact.</p>
+      <p>As I began exploring different mechanical designs to achieve efficient compaction, I weighed several mechanisms including manual levers, foot-powered pedals, hydraulic systems, and simple kinematic linkages.</p>
+      <p>During my market research, I discovered that a company named Joseph Joseph was already doing this with their Titan trash compactor model. While their engineering looked promising, one critical flaw struck me: if compaction successfully decreases the volume of the trash, its density must drastically increase. Pulling a highly dense, heavy block of tightly wedged garbage straight upward out of a deep bin would inevitably cause severe physical strain on the user.</p>
+      <p>When I looked into the product reviews, my suspicions were confirmed. While many users praised the aesthetics and out-of-the-box engineering, very few addressed the long-term User Experience (UX)—and those who did noted the difficulty of removing the compacted bag.</p>
+      
+      <h4>Engineering the Redesign</h4>
+      <p>With that insight, I decided to redesign the product. My goal wasn't to reinvent the compaction mechanism itself, but rather to introduce essential tweaks to radically improve the UX. I designed four key enhancements:</p>
+      
+      <ul>
+        <li><strong>Front-Opening Cabinet Door:</strong> Instead of forcing the user to lift the heavy bag upward against gravity and friction, I added a front-opening door. This allows the user to effortlessly slide the compacted trash bag out horizontally.</li>
+        <li><strong>Concealed Pin Hinge:</strong> To preserve the original clean geometry and minimalist aesthetic of the product, I utilized a hole-pin hinge. This keeps the door completely in the same plane as the chassis without disturbing its visual design.</li>
+        <li><strong>Push-to-Open Latches:</strong> I initially considered using magnetic latches, but realized the door would experience constant outward force during the compaction process, leading to premature latch failure. Utilizing AI tools like Claude to brainstorm solutions, I selected mechanical push-to-open latches. Because these latches require an inward push to release, the outward forces generated during compaction actually keep the door securely locked. I spaced three latches evenly along the edge; a single latch would eventually cause the door to warp or bow outward over time under repeated pressure.</li>
+        <li><strong>Internal Structural Ribs:</strong> To combat the constant internal load acting on the door and prevent it from denting or deforming, I reinforced the inside of the panel with vertical structural ribs. This ensures optimal load distribution and structural integrity over years of use.</li>
+      </ul>
+      
+      <div class="takeaway-box">
+        <h5>Key Technical & Design Takeaways</h5>
+        <ul>
+          <li><strong>UX First:</strong> Great engineering can be ruined by poor user experience. Always consider the entire product lifecycle, including extraction and maintenance.</li>
+          <li><strong>Clever Mechanical Design:</strong> Selecting latches where the outward compaction force actually reinforces the locking state is an elegant way to turn a design challenge into a mechanical advantage.</li>
+          <li><strong>Load Distribution:</strong> Sizing and spacing internal ribbing to prevent bowing under cyclic compression forces ensures structural longevity.</li>
+        </ul>
+      </div>
+    `
+  }
+};
+
+const modalOverlay = document.getElementById('glassModal');
+const modalBlurBg = document.getElementById('modalBlurBg');
+const modalTitle = document.getElementById('modalTitle');
+const modalContent = document.getElementById('modalContent');
+
+function openCaseStudy(key) {
+  const study = caseStudies[key];
+  if (!study) return;
+  
+  modalTitle.innerHTML = study.title;
+  modalContent.innerHTML = study.content;
+  
+  modalBlurBg.style.display = 'block';
+  modalBlurBg.offsetHeight; // force reflow
+  modalBlurBg.classList.add('open');
+  
+  modalOverlay.style.display = 'flex';
+  modalOverlay.offsetHeight; // force reflow
+  modalOverlay.classList.add('open');
+  
+  document.body.classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openCert(type) {
+  let title = "";
+  let pdfSrc = "";
+  
+  if (type === 'ge') {
+    title = "GE Aerospace — <em>Job Simulation</em> Certificate";
+    pdfSrc = "ge certificate.pdf";
+  } else if (type === 'siemens') {
+    title = "Siemens Operations — <em>Job Simulation</em> Certificate";
+    pdfSrc = "siemens certificate.pdf";
+  }
+  
+  modalTitle.innerHTML = title;
+  modalContent.innerHTML = `
+    <div class="glass-modal-pdf-container">
+      <iframe src="${pdfSrc}" class="glass-modal-pdf-iframe"></iframe>
+    </div>
+    <div style="text-align: center;">
+      <a href="${pdfSrc}" target="_blank" class="pdf-fallback-btn">
+        Open PDF in New Tab ↗
+      </a>
+    </div>
+  `;
+  
+  modalBlurBg.style.display = 'block';
+  modalBlurBg.offsetHeight; // force reflow
+  modalBlurBg.classList.add('open');
+  
+  modalOverlay.style.display = 'flex';
+  modalOverlay.offsetHeight; // force reflow
+  modalOverlay.classList.add('open');
+  
+  document.body.classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGlassModal() {
+  modalBlurBg.classList.remove('open');
+  modalOverlay.classList.remove('open');
+  document.body.classList.remove('modal-open');
+  document.body.style.overflow = '';
+  
+  // Wait for animation to finish before hiding display
+  setTimeout(() => {
+    if (!modalOverlay.classList.contains('open')) {
+      modalBlurBg.style.display = 'none';
+      modalOverlay.style.display = 'none';
+      modalContent.innerHTML = '';
+    }
+  }, 400);
+}
+
+// Close on escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeGlassModal();
+  }
+});
+
+// ────────────────────────────────────────────────────────
+// ADDITIONAL STYLES & INTERACTION LOGIC (MOBILE MENUS, THEMES, CAROUSELS & EXPLORER)
+// ────────────────────────────────────────────────────────
+
+// Mobile Menu Drawer Control
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+
+function toggleMobileMenu() {
+  if (!mobileMenuToggle || !mobileNavDrawer) return;
+  mobileMenuToggle.classList.toggle('active');
+  mobileNavDrawer.classList.toggle('open');
+  if (mobileNavDrawer.classList.contains('open')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+}
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+}
+
+// Theme initialization locked to the base dark violet palette
+document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.removeAttribute('data-theme');
+});
+
+// Track modal reading progress
+const modalBody = document.getElementById('modalContent');
+const progressBar = document.getElementById('modalProgressBar');
+if (modalBody && progressBar) {
+  modalBody.addEventListener('scroll', () => {
+    const totalHeight = modalBody.scrollHeight - modalBody.clientHeight;
+    if (totalHeight > 0) {
+      const percentage = (modalBody.scrollTop / totalHeight) * 100;
+      progressBar.style.width = `${percentage}%`;
+    } else {
+      progressBar.style.width = '0%';
+    }
+  });
+}
+
+// Upgraded Lightbox Logic with Carousel Support
+let lbImages = [];
+let lbIndex = -1;
+
+function initLightbox() {
+  const imgs = document.querySelectorAll('img[onclick^="openLb"]');
+  lbImages = Array.from(imgs).map(img => ({
+    src: img.src,
+    alt: img.alt || 'Engineering Design Detail'
+  }));
+}
+
+// Ensure images are collected
+window.addEventListener('load', initLightbox);
+
+// Override the original openLb
+function openLb(src) {
+  initLightbox(); // keep array fresh
+  lbIndex = lbImages.findIndex(img => img.src === src);
+  
+  updateLbContent();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLbContent() {
+  if (lbIndex < 0 || lbIndex >= lbImages.length) return;
+  const current = lbImages[lbIndex];
+  
+  const imgEl = document.getElementById('lb-img');
+  const captionEl = document.getElementById('lbCaption');
+  
+  if (imgEl) imgEl.src = current.src;
+  if (captionEl) captionEl.innerHTML = current.alt;
+}
+
+function navigateLb(direction) {
+  if (lbImages.length === 0) return;
+  lbIndex = (lbIndex + direction + lbImages.length) % lbImages.length;
+  updateLbContent();
+}
+
+// Swipe gestures for lightbox on mobile
+let touchStartX = 0;
+let touchEndX = 0;
+const lbOverlay = document.getElementById('lb');
+if (lbOverlay) {
+  lbOverlay.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  lbOverlay.addEventListener('touchmove', e => {
+    // Prevent scroll leakage to the body behind the lightbox
+    if (e.cancelable) e.preventDefault();
+  }, { passive: false });
+  
+  lbOverlay.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        navigateLb(-1); // Swipe Right -> Prev
+      } else {
+        navigateLb(1);  // Swipe Left -> Next
+      }
+    }
+  }, { passive: true });
+}
+
+// Keydown listeners for keyboard navigation
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lb');
+  if (lb && lb.classList.contains('open')) {
+    if (e.key === 'ArrowLeft') navigateLb(-1);
+    if (e.key === 'ArrowRight') navigateLb(1);
+  }
+});
+
+// CAD Explorer Step Data
+const cadExplorerSteps = {
+  rw: [
+    {
+      img: 'rw_housing_front.png',
+      label: 'Step 1: Motor Housing',
+      title: 'Base Motor Housing',
+      text: 'Secondary structural outer shell modeled in SolidWorks with perfect 3D-printing tolerances to house the high-speed BLDC stator securely.'
+    },
+    {
+      img: 'rw_housing_iso.png',
+      label: 'Step 2: BLDC Mounting Integration',
+      title: 'Precision Motor Locating Nodes',
+      text: 'Custom core integration designed to isolate high-vibration BLDC load paths and align primary motor shaft geometry with structural ribbing.'
+    },
+    {
+      img: 'rw_cad_front.png',
+      label: 'Step 3: 3-Spoke Rim Model',
+      title: 'CNC Aluminum Wheel Design',
+      text: 'Symmetrical 3-spoke momentum rim designed to optimize rotational inertia. Formatted directly for CNC lathe code execution.'
+    },
+    {
+      img: 'rw_electronics.png',
+      label: 'Step 4: ESP32 & Sensor Pack',
+      title: 'Electronics Housing Integration',
+      text: 'Compact hardware bay locating the ESP32 microchip, L298N driver, and MPU-6050 IMU accelerometer, complete with custom wiring ducts.'
+    },
+    {
+      img: 'rw_physical.png',
+      label: 'Step 5: Full Stabilizer Assembly',
+      title: 'Working physical model',
+      text: 'Completed mechanical stabilized spacecraft attitude-control module, fully fabricated and validated at the TN IMPACT Hackathon.'
+    }
+  ],
+  tc: [
+    {
+      img: 'trash_closed.png',
+      label: 'Step 1: Closed Footprint',
+      title: 'Minimalist Outer Footprint',
+      text: 'Elegant exterior footprint concealing all compaction levers, keeping structural elements clean and space-efficient.'
+    },
+    {
+      img: 'trash_hinge.png',
+      label: 'Step 2: Hidden Hinge Nodes',
+      title: 'Concealed Pin-Hinge System',
+      text: 'Custom internal hinges integrated flush inside structural sheet metal side walls, preserving sleek exterior lines while taking high load factors.'
+    },
+    {
+      img: 'trash_top.png',
+      label: 'Step 3: Compaction Ribbing',
+      title: 'Load-Distributing Compactor Plate',
+      text: 'Compactor pressure plate with internal load-distribution ribs designed in SolidWorks. Validated via FEA to prevent bowing during cycle compression.'
+    },
+    {
+      img: 'trash_open.png',
+      label: 'Step 4: Redesigned Cabinet Swing',
+      title: 'Horizontal Extraction Path',
+      text: 'Full side cabinet door swinging open horizontally, completely eliminating vertical bag lift friction and back strain.'
+    }
+  ]
+};
+
+function setExplorerStep(proj, stepIndex) {
+  const steps = cadExplorerSteps[proj];
+  if (!steps || stepIndex < 0 || stepIndex >= steps.length) return;
+  
+  const step = steps[stepIndex];
+  
+  const imgEl = document.getElementById(`${proj}CadExplorerImg`);
+  const overlayEl = document.getElementById(`${proj}CadExplorerLabel`);
+  const textEl = document.getElementById(`${proj}CadStepText`);
+  const progressEl = document.getElementById(`${proj}CadProgress`);
+  
+  if (imgEl) {
+    imgEl.style.opacity = 0;
+    imgEl.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      imgEl.src = step.img;
+      imgEl.style.opacity = 1;
+      imgEl.style.transform = 'scale(1)';
+    }, 150);
+  }
+  
+  if (overlayEl) overlayEl.innerHTML = step.label;
+  if (textEl) textEl.innerHTML = `<strong>${step.title}:</strong> ${step.text}`;
+  
+  if (progressEl) {
+    const percentage = ((stepIndex + 1) / steps.length) * 100;
+    progressEl.style.width = `${percentage}%`;
+  }
+  
+  // Update dots active class
+  const card = imgEl.closest('.cad-explorer-card');
+  if (card) {
+    const dots = card.querySelectorAll('.cad-step-dot');
+    dots.forEach((dot, idx) => {
+      if (idx === stepIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+}
+
+// Set initial active steps for explorers upon page load
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    setExplorerStep('rw', 0);
+    setExplorerStep('tc', 0);
+  }, 100);
+});
+</script>
+</body>
+</html>
