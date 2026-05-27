@@ -1049,13 +1049,17 @@ footer a:hover { color:#fff; }
   border-radius:8px; object-fit:contain;
 }
 .lb-close {
-  position:fixed; top:20px; right:24px;
+  position:fixed; top:12px; right:16px;
   color:#fff; font-size:28px; cursor:pointer;
   opacity:0.6; transition:opacity .2s;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10010;
 }
 .lb-close:hover { opacity:1; }
 
 @media (max-width:768px) {
+  .section-dark, .section-mid, .section-light { padding: 64px 0; }
   .feature-hero { grid-template-columns:1fr; }
   .card-grid-2, .card-grid-3 { grid-template-columns:1fr; }
   .cert-row { grid-template-columns:1fr; }
@@ -1701,13 +1705,13 @@ body.modal-open .live-bg-gradient {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 20px;
-  height: 14px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 350;
-  padding: 0;
+  padding: 13px 10px;
 }
 .mobile-menu-toggle span {
   width: 100%;
@@ -3037,6 +3041,13 @@ window.addEventListener('mousemove', (e) => {
   mouseY = e.clientY + window.scrollY;
 }, { passive: true });
 
+window.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    mouseX = e.touches[0].clientX;
+    mouseY = e.touches[0].clientY + window.scrollY;
+  }
+}, { passive: true });
+
 function animateGlow() {
   if (!document.body.classList.contains('modal-open')) {
     if (interactiveGlow) {
@@ -3055,11 +3066,6 @@ const caseStudies = {
   about: {
     title: "My Story — Benedict Thomas R",
     content: `
-      <h4>Curiosity &amp; Mechanics</h4>
-      <div class="modal-figure">
-        <img src="benedict_profile_seamless.png" alt="Benedict Profile Seamless">
-        <p class="modal-caption">Figure 1: Benedict Thomas R — Sophomore Mechanical Engineering Undergraduate</p>
-      </div>
       <p>Hi, I’m <strong>Benedict Thomas R</strong>, a sophomore Mechanical Engineering undergraduate student at Loyola ICAM.</p>
       <p>From a young age, I have always been intrigued by the mechanics of the world around me. Whether it was a simple toy train or the family moped, I had an irresistible urge to take things apart. My mom would often yell at me for "breaking" things, but to me, dismantling them was the only way to truly discover how they worked. As I grew up, everything changed—except for that core curiosity and the burning desire to understand how the physical world functions. That driving force, combined with a lifelong love for cars and automobiles, led me to choose mechanical engineering.</p>
       <p>I carry that exact same spirit into my college projects and engineering experiences today.</p>
@@ -3085,20 +3091,9 @@ const caseStudies = {
   baja: {
     title: "EV BAJA — <em>Design & Manufacturing</em> Team",
     content: `
-      <h4>From Combustion to Electric</h4>
-      <div class="modal-figure">
-        <img src="baja_e90.png" alt="EV BAJA E90 vehicle">
-        <p class="modal-caption">Figure 2: eBAJA E90 Electric Competition Vehicle at NATRAX</p>
-      </div>
       <p>Driven by a passion for automotive engineering, I joined our university’s BAJA team. Because recruitment happened late in the season, I was immediately thrown into the deep end, diving straight into the final manufacturing and assembly phase of our mBAJA (combustion) vehicle for the ATVC 2025 event. On the shop floor, I worked on critical vehicle interfaces, including the brake mounts, driver harness, seat mounts, side panels, and final painting.</p>
       <p>By my second year, our team took on a massive new challenge: transitioning from internal combustion to electric. We were embarking on a brand-new chapter: <strong>eBAJA</strong>.</p>
       
-      <h4>Fabricating the Roll Cage & Secondary Elements</h4>
-      <div class="modal-figure" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <img src="baja_chassis.png" alt="Space-frame chassis">
-        <img src="baja_chassis_top.png" alt="Chassis top view">
-      </div>
-      <p class="modal-caption" style="margin-top: 4px !important;">Figure 3: SolidWorks space-frame chassis design and top bracing details</p>
       <p>For the eBAJA build, my primary responsibilities shifted to the roll cage fabrication and assembly. I took ownership of designing several secondary structural members in SolidWorks. With deadlines rapidly approaching, the team pushed through grueling, nonstop days on the shop floor—simultaneously managing parts procurement while I interpreted CAD designs into physical reality.</p>
       
       <h4>The SAE BAJA 2026 Event at NATRAX</h4>
@@ -3125,12 +3120,6 @@ const caseStudies = {
   reaction: {
     title: "Compact <em>Reaction Wheel</em> Module — Hackathon 2026",
     content: `
-      <h4>Childhood Curiosity & Angular Momentum</h4>
-      <div class="modal-figure" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px;">
-        <img src="rw_physical.png" alt="Reaction wheel physical build">
-        <img src="rw_electronics.png" alt="Electronics assembly">
-      </div>
-      <p class="modal-caption" style="margin-top: 4px !important;">Figure 4: Final physical stabilizer module and integrated electronics stack</p>
       <p>We started out exploring multiple problem statements for the TN IMPACT Hackathon 2026, hosted by the Tamil Nadu Centre of Excellence for Advanced Manufacturing (TANCAM) at the KIT-Kalaignarkarunanidhi Institute of Technology. Ultimately, we landed on a project driven by pure childhood curiosity: <strong>"Designing and Developing a Compact Reaction Wheel/Gyroscopic Stabilizer Module."</strong></p>
       <p>We wanted to answer a fundamental question: Why do we lean into fast turns rather than just turning the handlebars while riding a bicycle? The answer, hiding in plain sight, was Angular Momentum—a physics principle that governs everything from our childhood bicycles to maneuvering the International Space Station (ISS).</p>
       
@@ -3156,12 +3145,6 @@ const caseStudies = {
   compactor: {
     title: "Trash Compactor <em>Redesign</em> Case Study",
     content: `
-      <h4>Identifying a Real UX Flaw</h4>
-      <div class="modal-figure" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <img src="trash_closed.png" alt="Compactor closed">
-        <img src="trash_open.png" alt="Compactor open">
-      </div>
-      <p class="modal-caption" style="margin-top: 4px !important;">Figure 5: Compactor redesign closed and open configurations for horizontal extraction</p>
       <p>Taking out the trash frequently is one of the most tedious household chores. To make matters worse, improper sealing often leads to mysterious, frustrating liquid leaks. Determined to find a solution, I dove into deep research and realized that trash compaction was the answer. It is a genius way to reduce the frequency of disposal trips while keeping the waste managed and compact.</p>
       <p>As I began exploring different mechanical designs to achieve efficient compaction, I weighed several mechanisms including manual levers, foot-powered pedals, hydraulic systems, and simple kinematic linkages.</p>
       <p>During my market research, I discovered that a company named Joseph Joseph was already doing this with their Titan trash compactor model. While their engineering looked promising, one critical flaw struck me: if compaction successfully decreases the volume of the trash, its density must drastically increase. Pulling a highly dense, heavy block of tightly wedged garbage straight upward out of a deep bin would inevitably cause severe physical strain on the user.</p>

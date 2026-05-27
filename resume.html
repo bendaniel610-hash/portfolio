@@ -310,7 +310,7 @@ body {
 
 <!-- Back Link & Action Navigation -->
 <div class="top-actions">
-  <a href="./benedict_portfolio_1.html" class="back-link">
+  <a href="./benedict_portfolio.html" class="back-link">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     Back to Portfolio
   </a>
@@ -359,9 +359,23 @@ const maxZoom = 3;
 let isDragging = false;
 let startX = 0, startY = 0;
 let translateX = 0, translateY = 0;
+let limitX = 0, limitY = 0;
 
 function updateTransform() {
   img.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${zoom})`;
+}
+
+function updateDragLimits() {
+  if (zoom === 1) {
+    limitX = 0;
+    limitY = 0;
+    return;
+  }
+  const rect = container.getBoundingClientRect();
+  const imgRect = img.getBoundingClientRect();
+  
+  limitX = (imgRect.width - rect.width) / 2;
+  limitY = (imgRect.height - rect.height) / 2;
 }
 
 function adjustZoom(amount) {
@@ -376,6 +390,7 @@ function adjustZoom(amount) {
     translateY = translateY * (zoom / oldZoom);
   }
   updateTransform();
+  updateDragLimits();
 }
 
 function resetZoom() {
@@ -383,6 +398,7 @@ function resetZoom() {
   translateX = 0;
   translateY = 0;
   updateTransform();
+  updateDragLimits();
 }
 
 // Drag operations
@@ -390,6 +406,7 @@ container.addEventListener('mousedown', (e) => {
   if (zoom === 1) return;
   isDragging = true;
   container.style.cursor = 'grabbing';
+  updateDragLimits();
   startX = e.clientX - translateX;
   startY = e.clientY - translateY;
   e.preventDefault();
@@ -397,12 +414,6 @@ container.addEventListener('mousedown', (e) => {
 
 window.addEventListener('mousemove', (e) => {
   if (!isDragging) return;
-  
-  const rect = container.getBoundingClientRect();
-  const imgRect = img.getBoundingClientRect();
-  
-  const limitX = (imgRect.width - rect.width) / 2;
-  const limitY = (imgRect.height - rect.height) / 2;
   
   let newX = e.clientX - startX;
   let newY = e.clientY - startY;
@@ -434,6 +445,7 @@ img.addEventListener('dragstart', e => e.preventDefault());
 container.addEventListener('touchstart', (e) => {
   if (zoom === 1 || e.touches.length > 1) return;
   isDragging = true;
+  updateDragLimits();
   startX = e.touches[0].clientX - translateX;
   startY = e.touches[0].clientY - translateY;
 }, { passive: true });
@@ -448,11 +460,6 @@ container.addEventListener('touchmove', (e) => {
   
   let newX = e.touches[0].clientX - startX;
   let newY = e.touches[0].clientY - startY;
-  
-  const rect = container.getBoundingClientRect();
-  const imgRect = img.getBoundingClientRect();
-  const limitX = (imgRect.width - rect.width) / 2;
-  const limitY = (imgRect.height - rect.height) / 2;
   
   if (limitX > 0) translateX = Math.max(-limitX, Math.min(limitX, newX));
   if (limitY > 0) translateY = Math.max(-limitY, Math.min(limitY, newY));
