@@ -187,6 +187,101 @@ body {
   will-change: transform;
 }
 
+/* ── VIEWER TABS ── */
+.viewer-tabs {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.tab-btn {
+  background: rgba(10, 8, 25, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+}
+.tab-btn.active {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: var(--accent-glow-subtle);
+  box-shadow: 0 10px 25px var(--accent-glow-subtle), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+/* ── PDF VIEW CONTROLS ── */
+.pdf-iframe-container {
+  display: block;
+}
+.pdf-mobile-fallback {
+  display: none;
+  padding: 60px 24px;
+  text-align: center;
+}
+.fallback-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 40px 24px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.fallback-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.fallback-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.fallback-card p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.primary-btn {
+  background: var(--accent-color) !important;
+  color: #111 !important;
+  font-weight: 600 !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 10px 20px var(--accent-glow) !important;
+}
+.primary-btn:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border-color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  .pdf-iframe-container {
+    display: none !important;
+  }
+  .pdf-mobile-fallback {
+    display: block !important;
+  }
+}
+
 /* Floating Zoom controls */
 .resume-zoom-controls {
   position: fixed;
@@ -259,13 +354,31 @@ body {
   .top-actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 16px;
   }
   .back-link {
     justify-content: center;
   }
   .action-buttons {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .action-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .viewer-tabs {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .tab-btn {
+    padding: 10px 18px;
+    font-size: 13px;
   }
 }
 
@@ -310,25 +423,61 @@ body {
 
 <!-- Back Link & Action Navigation -->
 <div class="top-actions">
-  <a href="./" class="back-link">
+  <a href="index.html" class="back-link">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     Back to Portfolio
   </a>
   <div class="action-buttons">
+    <a href="resume.png" download="Benedict_Thomas_R_Resume.png" class="action-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      Download PNG
+    </a>
     <a href="Benedict_Thomas_R_Resume.pdf" download="Benedict_Thomas_R_Resume.pdf" class="action-btn">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      Download Resume
+      Download PDF
     </a>
     <button class="action-btn" onclick="window.print()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-      Print Resume
+      Print
     </button>
   </div>
 </div>
 
+<!-- Viewer Tabs Switcher -->
+<div class="viewer-tabs">
+  <button class="tab-btn active" onclick="switchViewerTab('png')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; display: inline-block; vertical-align: middle;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+    PNG Image Preview
+  </button>
+  <button class="tab-btn" onclick="switchViewerTab('pdf')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; display: inline-block; vertical-align: middle;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+    PDF Document Viewer
+  </button>
+</div>
+
 <!-- Main Resume Interactive Viewer -->
 <div class="resume-viewer-container">
-  <img src="resume.jpg" alt="Benedict Thomas R — Resume" class="resume-image-styled" draggable="false">
+  <div class="resume-viewer-content active" id="png-content">
+    <img src="resume.png" alt="Benedict Thomas R — Resume" class="resume-image-styled" draggable="false">
+  </div>
+  <div class="resume-viewer-content" id="pdf-content" style="display: none;">
+    <!-- PDF Desktop Iframe Viewport -->
+    <div class="pdf-iframe-container">
+      <iframe src="Benedict_Thomas_R_Resume.pdf" class="pdf-iframe" style="width:100%; height:1100px; border:none; border-radius:23px; display:block;"></iframe>
+    </div>
+    <!-- PDF Mobile Fallback Viewport -->
+    <div class="pdf-mobile-fallback">
+      <div class="fallback-card">
+        <div class="fallback-icon">📄</div>
+        <h3>Benedict_Thomas_R_Resume.pdf</h3>
+        <p>PDF documents are optimized for direct downloads on mobile devices.</p>
+        <a href="Benedict_Thomas_R_Resume.pdf" download="Benedict_Thomas_R_Resume.pdf" class="action-btn primary-btn" style="justify-content: center; width: 100%;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; display: inline-block; vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download PDF Document
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Floating Zoom Controls -->
@@ -471,20 +620,76 @@ container.addEventListener('touchend', () => {
   isDragging = false;
 });
 
+// Switch Tab function
+function switchViewerTab(tab) {
+  const pngBtn = document.querySelector('.tab-btn[onclick*="png"]');
+  const pdfBtn = document.querySelector('.tab-btn[onclick*="pdf"]');
+  const pngContent = document.getElementById('png-content');
+  const pdfContent = document.getElementById('pdf-content');
+  const zoomControls = document.querySelector('.resume-zoom-controls');
+  const helpText = document.querySelector('.interactive-help');
+  const container = document.querySelector('.resume-viewer-container');
+
+  if (tab === 'png') {
+    pngBtn.classList.add('active');
+    pdfBtn.classList.remove('active');
+    pngContent.style.display = 'block';
+    pdfContent.style.display = 'none';
+    if (zoomControls) zoomControls.style.display = 'flex';
+    if (helpText) helpText.style.display = 'block';
+    
+    // Restore grab cursor style on image container
+    if (container) {
+      container.style.cursor = 'grab';
+    }
+  } else {
+    pngBtn.classList.remove('active');
+    pdfBtn.classList.add('active');
+    pngContent.style.display = 'none';
+    pdfContent.style.display = 'block';
+    if (zoomControls) zoomControls.style.display = 'none';
+    if (helpText) helpText.style.display = 'none';
+    
+    // Remove grab cursor when viewing PDF
+    if (container) {
+      container.style.cursor = 'default';
+    }
+  }
+}
+
 // Interactive Button Feedback for download
-const downloadLink = document.querySelector('a[download]');
-if (downloadLink) {
-  downloadLink.addEventListener('click', (e) => {
-    const originalText = downloadLink.innerHTML;
-    downloadLink.innerHTML = 'Saving Resume ✓';
-    downloadLink.style.borderColor = 'var(--accent-color)';
-    downloadLink.style.color = 'var(--accent-color)';
+const downloadLinks = document.querySelectorAll('a[download]');
+downloadLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const originalText = link.innerHTML;
+    const hasSvg = link.querySelector('svg');
+    const svgHtml = hasSvg ? hasSvg.outerHTML : '';
+    
+    // Clean text by stripping svg elements to see the label
+    const textNode = Array.from(link.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+    const labelText = textNode ? textNode.textContent.trim() : 'Resume';
+    
+    link.innerHTML = `${svgHtml} Saving...`;
+    link.style.borderColor = 'var(--accent-color)';
+    link.style.color = 'var(--accent-color)';
     
     setTimeout(() => {
-      downloadLink.innerHTML = originalText;
-      downloadLink.style.borderColor = '';
-      downloadLink.style.color = '';
+      link.innerHTML = originalText;
+      link.style.borderColor = '';
+      link.style.color = '';
     }, 2000);
+  });
+});
+
+// Back to portfolio scroll preservation / history back
+const backLink = document.querySelector('.back-link');
+if (backLink) {
+  backLink.addEventListener('click', (e) => {
+    // If the previous page was in the same portfolio domain, go back in history
+    if (document.referrer && document.referrer.includes(window.location.host)) {
+      e.preventDefault();
+      history.back();
+    }
   });
 }
 </script>
