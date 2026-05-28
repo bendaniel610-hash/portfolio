@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Benedict Thomas R — Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false,
+    }
+  }
+</script>
 <script>
   // High-performance early session check to prevent welcome screen flashing
   if (sessionStorage.getItem('enteredSite') === 'true') {
@@ -20,6 +28,8 @@
 
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
 
 :root {
   /* Cosmic Violet (Default Theme) */
@@ -2281,33 +2291,34 @@ body.modal-open .live-bg-gradient {
       </div>
 
       <!-- Structured Info Bar -->
-      <div class="hero-contact-bar">
-        <div class="hero-contact-item">
+      <!-- Structured Info Bar -->
+      <div class="hero-contact-bar grid grid-cols-2 gap-y-3 gap-x-4 p-4 md:flex md:flex-row md:p-0 md:gap-4 md:items-center">
+        <div class="hero-contact-item flex items-center gap-2">
           <span class="icon">📍</span>
-          <span>Chennai, India</span>
+          <span class="text-xs md:text-sm">Chennai, India</span>
         </div>
-        <div class="hero-contact-separator"></div>
-        <div class="hero-contact-item">
+        <div class="hero-contact-separator hidden md:block"></div>
+        <div class="hero-contact-item flex items-center gap-2">
           <span class="icon">📧</span>
-          <span><a href="mailto:benedictthomasr@gmail.com">benedictthomasr@gmail.com</a></span>
+          <span class="text-xs md:text-sm"><a href="mailto:benedictthomasr@gmail.com"><span class="inline md:hidden">Email</span><span class="hidden md:inline">benedictthomasr@gmail.com</span></a></span>
         </div>
-        <div class="hero-contact-separator"></div>
-        <div class="hero-contact-item">
+        <div class="hero-contact-separator hidden md:block"></div>
+        <div class="hero-contact-item flex items-center gap-2">
           <span class="icon">📞</span>
-          <span>+91 90801 14927</span>
+          <span class="text-xs md:text-sm">+91 90801 14927</span>
         </div>
-        <div class="hero-contact-separator"></div>
-        <div class="hero-contact-item">
+        <div class="hero-contact-separator hidden md:block"></div>
+        <div class="hero-contact-item flex items-center gap-2">
           <span class="icon">🔗</span>
-          <span><a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank">benedict-thomas-r</a></span>
+          <span class="text-xs md:text-sm"><a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank"><span class="inline md:hidden">LinkedIn</span><span class="hidden md:inline">benedict-thomas-r</span></a></span>
         </div>
       </div>
 
       <!-- Premium Call-To-Action Actions -->
-      <div class="contact-actions" style="margin: 0; justify-content: flex-start; animation: fadeUp .7s .4s ease both;">
-        <a href="mailto:benedictthomasr@gmail.com" class="contact-action-btn email-btn">Email Me 📧</a>
-        <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank" class="contact-action-btn linkedin-btn">LinkedIn Profile 🔗</a>
-        <a href="resume.html" class="contact-action-btn resume-btn">View Resume ↗</a>
+      <div class="contact-actions grid grid-cols-2 gap-3 max-w-[320px] md:flex md:flex-row md:max-w-none md:gap-4" style="margin: 0; justify-content: flex-start; animation: fadeUp .7s .4s ease both;">
+        <a href="mailto:benedictthomasr@gmail.com" class="contact-action-btn email-btn text-center w-full md:w-auto">Email Me 📧</a>
+        <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank" class="contact-action-btn linkedin-btn text-center w-full md:w-auto">LinkedIn Profile 🔗</a>
+        <a href="resume.html" class="contact-action-btn resume-btn text-center col-span-2 w-full max-w-[160px] mx-auto md:col-span-1 md:w-auto md:mx-0">View Resume ↗</a>
       </div>
     </div>
     
@@ -2326,9 +2337,9 @@ body.modal-open .live-bg-gradient {
   <div class="inner">
     <p class="sec-label">Project 01</p>
     <h2 class="sec-title">EV BAJA — <em>Design &<br>Manufacturing</em> Team</h2>
-    <p class="sec-desc">2 competition seasons. Space-frame chassis designed in SolidWorks, fabricated on the shop floor — and driven to competition as E90.</p>
+    <p class="sec-desc">2 competition seasons — transitioning from the combustion mBaja to the electric E90 (eBaja). Space-frame chassis designed in SolidWorks and fabricated on the shop floor.</p>
 
-    <div class="stat-row">
+    <div class="stat-row grid grid-cols-2 gap-4 md:flex md:flex-row md:gap-12 md:flex-wrap md:mb-12">
       <div class="stat"><div class="num">2</div><div class="label">Competition Seasons</div></div>
       <div class="stat"><div class="num">E90</div><div class="label">Vehicle Name</div></div>
       <div class="stat"><div class="num">MIG</div><div class="label">Welding Process</div></div>
@@ -2339,7 +2350,7 @@ body.modal-open .live-bg-gradient {
       <div class="fh-content">
         <p class="card-tag">Competition Vehicle</p>
         <h3>From <em>sketch</em> to<br>start line</h3>
-        <p>The E90 competed in 2 back-to-back BAJA seasons. Structural members designed in SolidWorks, fabricated with jig-based alignment and MIG welding — maintaining load-path integrity throughout.</p>
+        <p>Competed in 2 back-to-back BAJA seasons: first with the combustion mBaja vehicle, followed by the electric E90 (eBaja). Structural members designed in SolidWorks, fabricated with jig-based alignment and MIG welding — maintaining load-path integrity throughout.</p>
         <a href="javascript:void(0)" class="read-more-btn" onclick="openCaseStudy('baja')">Read Full Story ↗</a>
       </div>
       <div class="fh-visual">
@@ -2396,9 +2407,9 @@ body.modal-open .live-bg-gradient {
 
     <!-- Gusset / bracket CAD extras -->
     <p style="font-family:'Fraunces',serif; font-size:22px; font-weight:300; color:rgba(255,255,255,0.7); margin-bottom:20px;">Component <em style="font-style:italic; color:#c084fc">details</em></p>
-    <div class="photo-strip">
-      <img src="baja_gusset_iso.png" alt="Gusset bracket ISO" onclick="openLb(this.src)">
-      <img src="baja_gusset_flat.png" alt="Gusset bracket flat" onclick="openLb(this.src)">
+    <div class="photo-strip flex flex-row overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-hide md:flex md:flex-row md:overflow-x-auto md:gap-5 md:mb-8">
+      <img src="baja_gusset_iso.png" alt="Gusset bracket ISO" onclick="openLb(this.src)" class="w-[80vw] shrink-0 snap-center md:w-auto md:h-[180px]">
+      <img src="baja_gusset_flat.png" alt="Gusset bracket flat" onclick="openLb(this.src)" class="w-[80vw] shrink-0 snap-center md:w-auto md:h-[180px]">
     </div>
     <p style="font-size:13px; color:rgba(255,255,255,0.25); margin-top:-16px;">↑ Scroll to see more · click to expand</p>
   </div>
@@ -2411,7 +2422,7 @@ body.modal-open .live-bg-gradient {
     <h2 class="sec-title">Compact <em>Reaction Wheel</em><br>— TN IMPACT Hackathon 2026</h2>
     <p class="sec-desc">From CAD to working demonstrator in one hackathon. Awarded Special Prize ₹5,000 — spacecraft attitude control that you can hold in your hand.</p>
 
-    <div class="stat-row">
+    <div class="stat-row grid grid-cols-2 gap-4 md:flex md:flex-row md:gap-12 md:flex-wrap md:mb-12">
       <div class="stat"><div class="num">₹5k</div><div class="label">Special Prize Won</div></div>
       <div class="stat"><div class="num">3</div><div class="label">Spoke Aluminium Rim</div></div>
       <div class="stat"><div class="num">ESP32</div><div class="label">Microcontroller</div></div>
@@ -2459,22 +2470,22 @@ body.modal-open .live-bg-gradient {
         <div class="cad-explorer-desc">Click the step buttons to see the module assemble layer-by-layer.</div>
       </div>
       <div class="cad-explorer-body">
-        <div class="cad-explorer-display">
+        <div class="cad-explorer-display h-[200px] md:h-[240px]">
           <img id="rwCadExplorerImg" src="rw_housing_front.png" alt="Step 1">
           <div class="cad-explorer-overlay-label" id="rwCadExplorerLabel">Step 1: Motor Housing</div>
         </div>
         <div class="cad-explorer-controls">
-          <div class="cad-steps">
-            <button class="cad-step-dot active" onclick="setExplorerStep('rw', 0)">1</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('rw', 1)">2</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('rw', 2)">3</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('rw', 3)">4</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('rw', 4)">5</button>
+          <div class="cad-steps flex flex-row flex-wrap gap-2 justify-start md:flex md:flex-row md:gap-3 md:justify-start">
+            <button class="cad-step-dot active shrink-0" onclick="setExplorerStep('rw', 0)">1</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('rw', 1)">2</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('rw', 2)">3</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('rw', 3)">4</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('rw', 4)">5</button>
           </div>
           <div class="cad-progress-bar-bg">
             <div class="cad-progress-bar-fill" id="rwCadProgress"></div>
           </div>
-          <div class="cad-step-text" id="rwCadStepText">
+          <div class="cad-step-text text-sm min-h-[60px] md:text-base md:min-h-[80px]" id="rwCadStepText">
             <strong>Base Motor Housing:</strong> Secondary structural outer shell modeled in SolidWorks with perfect 3D-printing tolerances to house the high-speed BLDC stator securely.
           </div>
         </div>
@@ -2483,10 +2494,10 @@ body.modal-open .live-bg-gradient {
 
     <!-- CAD renders strip -->
     <p style="font-family:'Fraunces',serif; font-size:22px; font-weight:300; color:rgba(255,255,255,0.7); margin-bottom:20px;">Wheel CAD <em style="font-style:italic; color:var(--accent-color)">renders</em></p>
-    <div class="photo-strip">
-      <img src="rw_cad_front.png" alt="Wheel CAD front" onclick="openLb(this.src)">
-      <img src="rw_cad_iso.png" alt="Wheel CAD isometric" onclick="openLb(this.src)">
-      <img src="rw_housing_front.png" alt="Housing front view" onclick="openLb(this.src)">
+    <div class="photo-strip flex flex-row overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-hide md:flex md:flex-row md:overflow-x-auto md:gap-5 md:mb-8">
+      <img src="rw_cad_front.png" alt="Wheel CAD front" onclick="openLb(this.src)" class="w-[80vw] shrink-0 snap-center md:w-auto md:h-[180px]">
+      <img src="rw_cad_iso.png" alt="Wheel CAD isometric" onclick="openLb(this.src)" class="w-[80vw] shrink-0 snap-center md:w-auto md:h-[180px]">
+      <img src="rw_housing_front.png" alt="Housing front view" onclick="openLb(this.src)" class="w-[80vw] shrink-0 snap-center md:w-auto md:h-[180px]">
     </div>
   </div>
 </section>
@@ -2548,21 +2559,21 @@ body.modal-open .live-bg-gradient {
         <div class="cad-explorer-desc">Click the step buttons to see the horizontal opening redesign sequence.</div>
       </div>
       <div class="cad-explorer-body">
-        <div class="cad-explorer-display">
+        <div class="cad-explorer-display h-[200px] md:h-[240px]">
           <img id="tcCadExplorerImg" src="trash_closed.png" alt="Step 1">
           <div class="cad-explorer-overlay-label" id="tcCadExplorerLabel">Step 1: Closed Cabinet</div>
         </div>
         <div class="cad-explorer-controls">
-          <div class="cad-steps">
-            <button class="cad-step-dot active" onclick="setExplorerStep('tc', 0)">1</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('tc', 1)">2</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('tc', 2)">3</button>
-            <button class="cad-step-dot" onclick="setExplorerStep('tc', 3)">4</button>
+          <div class="cad-steps flex flex-row flex-wrap gap-2 justify-start md:flex md:flex-row md:gap-3 md:justify-start">
+            <button class="cad-step-dot active shrink-0" onclick="setExplorerStep('tc', 0)">1</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('tc', 1)">2</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('tc', 2)">3</button>
+            <button class="cad-step-dot shrink-0" onclick="setExplorerStep('tc', 3)">4</button>
           </div>
           <div class="cad-progress-bar-bg">
             <div class="cad-progress-bar-fill" id="tcCadProgress"></div>
           </div>
-          <div class="cad-step-text" id="tcCadStepText">
+          <div class="cad-step-text text-sm min-h-[60px] md:text-base md:min-h-[80px]" id="tcCadStepText">
             <strong>Minimalist Outer Footprint:</strong> Elegant exterior footprint concealing all compaction levers, keeping structural elements clean and space-efficient.
           </div>
         </div>
@@ -2867,20 +2878,20 @@ body.modal-open .live-bg-gradient {
     <p class="sec-label" style="justify-content:center;">Get in touch</p>
     <h2 class="sec-title" style="margin-bottom:20px;">Looking for an <em>internship</em><br>in product design &amp; manufacturing</h2>
     <p style="font-size:17px; color:rgba(255,255,255,0.55); max-width:500px; margin:0 auto 40px; line-height:1.7;">Based in Chennai · available for internships at startups and MNCs · ready to contribute real engineering work from day one.</p>
-    <div class="contact-actions">
-      <a href="mailto:benedictthomasr@gmail.com" class="contact-action-btn email-btn">Email Me 📧</a>
-      <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank" class="contact-action-btn linkedin-btn">LinkedIn Profile 🔗</a>
-      <a href="resume.html" class="contact-action-btn resume-btn">View Resume ↗</a>
+    <div class="contact-actions grid grid-cols-2 gap-3 max-w-[320px] mx-auto md:flex md:flex-row md:max-w-none md:justify-center md:gap-4">
+      <a href="mailto:benedictthomasr@gmail.com" class="contact-action-btn email-btn text-center w-full md:w-auto">Email Me 📧</a>
+      <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank" class="contact-action-btn linkedin-btn text-center w-full md:w-auto">LinkedIn Profile 🔗</a>
+      <a href="resume.html" class="contact-action-btn resume-btn text-center col-span-2 w-full max-w-[160px] mx-auto md:col-span-1 md:w-auto md:mx-0">View Resume ↗</a>
     </div>
-    <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,0.4);">+91 90801 14927 · Chennai, India</p>
+    <p class="text-xs md:text-sm text-center opacity-60 mt-4">+91 90801 14927 · Chennai, India</p>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer class="flex flex-col items-center text-center">
   <div class="footer-name">Benedict <em>Thomas R</em></div>
-  <p>Mechanical Engineering Student · Loyola-ICAM College of Engineering and Technology</p>
-  <div style="margin-top:16px;">
+  <p class="text-xs md:text-sm max-w-[320px] md:max-w-none mx-auto mt-2">Mechanical Engineering Student · Loyola-ICAM College of Engineering and Technology</p>
+  <div class="grid grid-cols-2 gap-x-6 gap-y-3 justify-items-center max-w-[280px] mx-auto md:flex md:flex-row md:max-w-none md:gap-x-8 md:justify-center" style="margin-top:16px;">
     <a href="mailto:benedictthomasr@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/benedict-thomas-r" target="_blank">LinkedIn</a>
     <a href="resume.html">Resume</a>
