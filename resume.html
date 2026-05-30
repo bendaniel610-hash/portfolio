@@ -163,70 +163,17 @@ body {
   background: rgba(10, 8, 25, 0.45);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
   position: relative;
   overflow: hidden;
-  cursor: grab;
-}
-.resume-viewer-container:active {
-  cursor: grabbing;
+  cursor: default;
 }
 .resume-viewer-container:hover {
-  transform: translateY(-4px);
   border-color: var(--accent-color);
   box-shadow: 0 45px 90px rgba(0,0,0,0.75), 0 0 50px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-.resume-image-styled {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 23px;
-  filter: contrast(1.02) saturate(1.01);
-  transform-origin: center center;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
 
-/* ── VIEWER TABS ── */
-.viewer-tabs {
-  max-width: fit-content;
-  margin: 0 auto 24px;
-  display: flex;
-  background: rgba(10, 8, 25, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 5px;
-  border-radius: 100px;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-.tab-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 10px 24px;
-  border-radius: 100px;
-  font-weight: 500;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.tab-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.04);
-}
-.tab-btn.active {
-  color: var(--accent-color);
-  background: var(--accent-glow-subtle);
-  border-color: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  font-weight: 600;
-}
+/* Tab switcher removed */
 
 /* ── PDF VIEW CONTROLS ── */
 .pdf-iframe-container {
@@ -284,55 +231,7 @@ body {
   }
 }
 
-/* Floating Zoom controls */
-.resume-zoom-controls {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: rgba(10, 8, 25, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  padding: 8px;
-  border-radius: 100px;
-  display: flex;
-  gap: 8px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  z-index: 100;
-}
-.zoom-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #fff;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: 'Space Mono', monospace;
-  padding: 0;
-  outline: none;
-}
-.zoom-btn:hover {
-  background: #fff;
-  color: #111;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--accent-glow);
-}
-.zoom-btn.reset {
-  font-size: 13px;
-}
-
-@media print {
-  .resume-zoom-controls {
-    display: none !important;
-  }
-}
+/* Zoom controls removed */
 
 .interactive-help {
   text-align: center;
@@ -372,19 +271,6 @@ body {
     flex: 1 1 auto;
     justify-content: center;
   }
-  .viewer-tabs {
-    flex-direction: row;
-    max-width: calc(100% - 20px);
-    margin: 0 auto 20px;
-    padding: 4px;
-    border-radius: 100px;
-    gap: 4px;
-  }
-  .tab-btn {
-    padding: 8px 16px;
-    font-size: 12px;
-    flex: 1 1 50%;
-  }
 }
 
 /* ── PERFECT PRINT CONFIGURATION ── */
@@ -406,13 +292,6 @@ body {
     max-width: 100% !important;
     transform: none !important;
   }
-  .resume-image-styled {
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    display: block !important;
-  }
 }
 </style>
 </head>
@@ -433,13 +312,9 @@ body {
     Back to Portfolio
   </a>
   <div class="action-buttons">
-    <a href="resume.png" download="Benedict_Thomas_R_Resume.png" class="action-btn">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      Download Graphic Resume
-    </a>
     <a href="Benedict_Thomas_R_Resume.pdf" download="Benedict_Thomas_R_Resume.pdf" class="action-btn">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      Download Text Resume
+      Download Resume
     </a>
     <button class="action-btn" onclick="window.print()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
@@ -448,24 +323,9 @@ body {
   </div>
 </div>
 
-<!-- Viewer Tabs Switcher -->
-<div class="viewer-tabs">
-  <button class="tab-btn active" onclick="switchViewerTab('png')">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-    Creative Graphic Resume
-  </button>
-  <button class="tab-btn" onclick="switchViewerTab('pdf')">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-    Standard Text Resume
-  </button>
-</div>
-
 <!-- Main Resume Interactive Viewer -->
 <div class="resume-viewer-container">
-  <div class="resume-viewer-content active" id="png-content">
-    <img src="resume.png" alt="Benedict Thomas R — Resume" class="resume-image-styled" draggable="false">
-  </div>
-  <div class="resume-viewer-content" id="pdf-content" style="display: none;">
+  <div class="resume-viewer-content active" id="pdf-content">
     <!-- PDF Desktop Iframe Viewport -->
     <div class="pdf-iframe-container">
       <iframe src="Benedict_Thomas_R_Resume.pdf" class="pdf-iframe" style="width:100%; height:1100px; border:none; border-radius:23px; display:block;"></iframe>
@@ -485,13 +345,6 @@ body {
   </div>
 </div>
 
-<!-- Floating Zoom Controls -->
-<div class="resume-zoom-controls">
-  <button class="zoom-btn" onclick="adjustZoom(0.15)" title="Zoom In">+</button>
-  <button class="zoom-btn" onclick="adjustZoom(-0.15)" title="Zoom Out">−</button>
-  <button class="zoom-btn reset" onclick="resetZoom()" title="Reset Zoom">⟲</button>
-</div>
-
 <div class="interactive-help">
   [press ctrl+p to print or save as pdf]
 </div>
@@ -501,165 +354,6 @@ body {
 const savedTheme = localStorage.getItem('portfolio-theme') || 'violet';
 if (savedTheme !== 'violet') {
   document.documentElement.setAttribute('data-theme', savedTheme);
-}
-
-// Zoom and Drag viewer state logic
-const container = document.querySelector('.resume-viewer-container');
-const img = document.querySelector('.resume-image-styled');
-
-let zoom = 1;
-const minZoom = 1;
-const maxZoom = 3;
-let isDragging = false;
-let startX = 0, startY = 0;
-let translateX = 0, translateY = 0;
-let limitX = 0, limitY = 0;
-
-function updateTransform() {
-  img.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${zoom})`;
-}
-
-function updateDragLimits() {
-  if (zoom === 1) {
-    limitX = 0;
-    limitY = 0;
-    return;
-  }
-  const rect = container.getBoundingClientRect();
-  const imgRect = img.getBoundingClientRect();
-  
-  limitX = (imgRect.width - rect.width) / 2;
-  limitY = (imgRect.height - rect.height) / 2;
-}
-
-function adjustZoom(amount) {
-  const oldZoom = zoom;
-  zoom = Math.min(maxZoom, Math.max(minZoom, zoom + amount));
-  
-  if (zoom === 1) {
-    translateX = 0;
-    translateY = 0;
-  } else {
-    translateX = translateX * (zoom / oldZoom);
-    translateY = translateY * (zoom / oldZoom);
-  }
-  updateTransform();
-  updateDragLimits();
-}
-
-function resetZoom() {
-  zoom = 1;
-  translateX = 0;
-  translateY = 0;
-  updateTransform();
-  updateDragLimits();
-}
-
-// Drag operations
-container.addEventListener('mousedown', (e) => {
-  if (zoom === 1) return;
-  isDragging = true;
-  container.style.cursor = 'grabbing';
-  updateDragLimits();
-  startX = e.clientX - translateX;
-  startY = e.clientY - translateY;
-  e.preventDefault();
-});
-
-window.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  
-  let newX = e.clientX - startX;
-  let newY = e.clientY - startY;
-  
-  if (limitX > 0) {
-    translateX = Math.max(-limitX, Math.min(limitX, newX));
-  } else {
-    translateX = 0;
-  }
-  
-  if (limitY > 0) {
-    translateY = Math.max(-limitY, Math.min(limitY, newY));
-  } else {
-    translateY = 0;
-  }
-  
-  updateTransform();
-});
-
-window.addEventListener('mouseup', () => {
-  isDragging = false;
-  container.style.cursor = zoom > 1 ? 'grab' : 'default';
-});
-
-// Prevent default browser ghost dragging
-img.addEventListener('dragstart', e => e.preventDefault());
-
-// Mobile Touch drag events
-container.addEventListener('touchstart', (e) => {
-  if (zoom === 1 || e.touches.length > 1) return;
-  isDragging = true;
-  updateDragLimits();
-  startX = e.touches[0].clientX - translateX;
-  startY = e.touches[0].clientY - translateY;
-}, { passive: true });
-
-container.addEventListener('touchmove', (e) => {
-  if (!isDragging || e.touches.length > 1) return;
-  
-  // Prevent browser viewport scrolling only when zoomed in and actively dragging
-  if (zoom > 1) {
-    if (e.cancelable) e.preventDefault();
-  }
-  
-  let newX = e.touches[0].clientX - startX;
-  let newY = e.touches[0].clientY - startY;
-  
-  if (limitX > 0) translateX = Math.max(-limitX, Math.min(limitX, newX));
-  if (limitY > 0) translateY = Math.max(-limitY, Math.min(limitY, newY));
-  
-  updateTransform();
-}, { passive: false }); // Set passive: false to allow e.preventDefault()!
-
-container.addEventListener('touchend', () => {
-  isDragging = false;
-});
-
-// Switch Tab function
-function switchViewerTab(tab) {
-  const pngBtn = document.querySelector('.tab-btn[onclick*="png"]');
-  const pdfBtn = document.querySelector('.tab-btn[onclick*="pdf"]');
-  const pngContent = document.getElementById('png-content');
-  const pdfContent = document.getElementById('pdf-content');
-  const zoomControls = document.querySelector('.resume-zoom-controls');
-  const helpText = document.querySelector('.interactive-help');
-  const container = document.querySelector('.resume-viewer-container');
-
-  if (tab === 'png') {
-    pngBtn.classList.add('active');
-    pdfBtn.classList.remove('active');
-    pngContent.style.display = 'block';
-    pdfContent.style.display = 'none';
-    if (zoomControls) zoomControls.style.display = 'flex';
-    if (helpText) helpText.style.display = 'block';
-    
-    // Restore grab cursor style on image container
-    if (container) {
-      container.style.cursor = 'grab';
-    }
-  } else {
-    pngBtn.classList.remove('active');
-    pdfBtn.classList.add('active');
-    pngContent.style.display = 'none';
-    pdfContent.style.display = 'block';
-    if (zoomControls) zoomControls.style.display = 'none';
-    if (helpText) helpText.style.display = 'none';
-    
-    // Remove grab cursor when viewing PDF
-    if (container) {
-      container.style.cursor = 'default';
-    }
-  }
 }
 
 // Interactive Button Feedback for download
